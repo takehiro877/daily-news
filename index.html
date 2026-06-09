@@ -1,381 +1,43 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>今日のニュースまとめ - 2026年06月09日</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
-      background: #f0f2f5;
-      color: #1a1a2e;
-      line-height: 1.75;
-      font-size: 15px;
-    }
-
-    header {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
-      color: white;
-      padding: 24px 16px 20px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-    }
-
-    header h1 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      margin-bottom: 6px;
-    }
-
-    header .date-time {
-      font-size: 0.78rem;
-      opacity: 0.75;
-      letter-spacing: 0.05em;
-    }
-
-    .container {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 16px 12px 40px;
-    }
-
-    .category {
-      margin-bottom: 28px;
-    }
-
-    .category-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 16px;
-      border-radius: 12px 12px 0 0;
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      margin-bottom: 0;
-    }
-
-    .category-domestic .category-header  { background: linear-gradient(90deg, #e74c3c, #c0392b); color: white; }
-    .category-world    .category-header  { background: linear-gradient(90deg, #2980b9, #1a5276); color: white; }
-    .category-economy  .category-header  { background: linear-gradient(90deg, #27ae60, #1e8449); color: white; }
-    .category-health   .category-header  { background: linear-gradient(90deg, #8e44ad, #6c3483); color: white; }
-
-    .cards-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .card {
-      background: #ffffff;
-      border-left: 4px solid transparent;
-      padding: 16px 16px 14px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-      transition: box-shadow 0.2s;
-    }
-
-    .card:last-child {
-      border-radius: 0 0 12px 12px;
-    }
-
-    .card + .card {
-      border-top: 1px solid #f0f0f0;
-    }
-
-    .category-domestic .card  { border-left-color: #e74c3c; }
-    .category-world    .card  { border-left-color: #2980b9; }
-    .category-economy  .card  { border-left-color: #27ae60; }
-    .category-health   .card  { border-left-color: #8e44ad; }
-
-    .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
-
-    .card-title a {
-      font-size: 0.95rem;
-      font-weight: 700;
-      text-decoration: none;
-      line-height: 1.5;
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .category-domestic .card-title a { color: #c0392b; }
-    .category-world    .card-title a { color: #1a5276; }
-    .category-economy  .card-title a { color: #1e8449; }
-    .category-health   .card-title a { color: #6c3483; }
-
-    .card-title a:hover { text-decoration: underline; }
-
-    .card-summary {
-      font-size: 0.865rem;
-      color: #4a4a6a;
-      line-height: 1.8;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.75rem;
-      color: #888;
-      padding: 20px 16px;
-      border-top: 1px solid #e0e0e0;
-      margin-top: 8px;
-    }
-
-    @media (max-width: 400px) {
-      body { font-size: 14px; }
-      header h1 { font-size: 1.1rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="今日のニュース">
+<title>📰 今日のニュースまとめ</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif; background: #f0f2f5; color: #333; }
+  .header { background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 24px 16px 20px; text-align: center; }
+  .header h1 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .header .date { font-size: 13px; opacity: 0.8; }
+  .container { max-width: 640px; margin: 0 auto; padding: 16px; }
+  .category { margin-bottom: 24px; }
+  .category-title { font-size: 15px; font-weight: 700; padding: 8px 14px; border-radius: 20px; display: inline-block; margin-bottom: 12px; color: white; }
+  .cat-domestic { background: #e74c3c; }
+  .cat-world    { background: #2980b9; }
+  .cat-economy  { background: #27ae60; }
+  .cat-health   { background: #8e44ad; }
+  .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .card a { color: #1a1a2e; font-size: 15px; font-weight: 600; text-decoration: none; line-height: 1.4; display: block; margin-bottom: 6px; }
+  .card a:hover { color: #2980b9; }
+  .card p { font-size: 13px; color: #666; line-height: 1.6; }
+  .loading { text-align: center; padding: 60px 20px; color: #999; font-size: 15px; }
+  .footer { text-align: center; padding: 20px; font-size: 12px; color: #aaa; }
+</style>
 </head>
 <body>
-
-<header>
+<div class="header">
   <h1>📰 今日のニュースまとめ</h1>
-  <div class="date-time">2026年06月09日（火）更新：12:39 JST</div>
-</header>
-
-<div class="container">
-
-  <!-- 国内ニュース -->
-  <section class="category category-domestic">
-    <div class="category-header">🗾 国内ニュース</div>
-    <div class="cards-wrapper">
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://www.nikkei.com/article/DGXZQOGR22CLG0S6A520C2000000/" target="_blank">
-            G7サミット首脳宣言、2年連続で見送り調整へ
-          </a>
-        </div>
-        <p class="card-summary">
-          6月15〜17日にフランス・エビアンで開かれるG7サミットで、首脳宣言のとりまとめが見送られる方向で調整されていることが明らかになった。米国と他国の意見対立が背景にあり、2年連続の見送りとなれば異例の事態となる。重要鉱物など一部分野の成果文書のみが発表される見通し。
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://www.nikkei.com/article/DGXZQOFL031TH0T00C26A6000000/" target="_blank">
-            日経平均が初の6万8000円台を記録
-          </a>
-        </div>
-        <p class="card-summary">
-          東京株式市場で日経平均株価が史上初めて6万8000円台に乗せた。AI・半導体関連銘柄を中心に買いが集まり、前日比大幅高を記録。キオクシアHDやアドバンテスト、フジクラなどが相場を牽引した。
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://news.web.nhk/newsweb/genre/domestic" target="_blank">
-            北関東・東北各地でクマの目撃・捕獲相次ぐ
-          </a>
-        </div>
-        <p class="card-summary">
-          栃木県宇都宮市でクマが麻酔銃により捕獲されたほか、福島・岩手両県でも市街地への出没が続いている。初夏に向けて活動範囲が広がっており、当局は住民に注意を呼びかけている。
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://www.mhlw.go.jp/stf/newpage_67729.html" target="_blank">
-            2026年度診療報酬改定が6月1日より施行
-          </a>
-        </div>
-        <p class="card-summary">
-          12年ぶりの大幅プラス改定（本体＋3.09%）となる2026年度診療報酬改定が6月1日から適用された。再診料の引き上げや入院食費の値上げなど患者負担が一部増加する一方、医療従事者の賃上げ支援やマイナ保険証の活用促進が柱となっている。
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://www.nomura.co.jp/wealthstyle/article/0744/" target="_blank">
-            野村証券、日経平均の2026年末予想を6万8000円に上方修正
-          </a>
-        </div>
-        <p class="card-summary">
-          野村証券のストラテジストは、AI・半導体セクターの好業績を背景に日経平均の2026年末予想を6万8000円へ上方修正した。上振れシナリオでは7万円台突破の可能性も示唆しており、市場の関心を集めている。
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 国際ニュース -->
-  <section class="category category-world">
-    <div class="category-header">🌍 国際ニュース</div>
-    <div class="cards-wrapper">
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://www.nikkei.com/article/DGXZQOGM0828Q0Y6A600C2000000/" target="_blank">
-            フィリピン南部でM7.8の強震、1メートル超の津波を観測
-          </a>
-        </div>
-        <p class="card-summary">
-          6月8日午前8時37分（日本時間）、フィリピン南部ミンダナオ島沖でM7.8の地震が発生した。震源付近で1メートルを超える津波が観測され、少なくとも3人が死亡した。日本の沿岸でも最大20cmの津波が観測され、気象庁が一時津波注意報を発令した。
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://www.mofa.go.jp/mofaj/ecm/ec/pagew_000001_02321.html" target="_blank">
-            G7サミット、インド・韓国・ブラジル・ケニアを招待
-          </a>
-        </div>
-        <p class="card-summary">
-          フランス大統領府は、エビアンで開かれる今年のG7サミットにインド、韓国、ブラジル、ケニアの4カ国を招待すると発表した。中国の招待は見送られた。グローバルサウスとの連携強化が狙いとされる。
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://news.infoseek.co.jp/g/world/" target="_blank">
-            サグラダ・ファミリア「イエスの塔」がついに完成
-          </a>
-        </div>
-        <p class="card-summary">
-          スペイン・バルセロナの世界遺産サグラダ・ファミリア教会のメインタワー「イエスの塔」が完成し、6月10日には建築家ガウディの没後100周年に合わせてローマ教皇による記念ミサが執り行われる予定。140年以上にわたる建設の一大節目となる。
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtcGhHZ0pLVUNnQVAB?hl=ja&gl=JP&ceid=JP%3Aja" target="_blank">
-            アルゼンチンがCPTPP（環太平洋経済連携）への加入を申請
-          </a>
-        </div>
-        <p class="card-summary">
-          アルゼンチン政府がCPTPP（包括的及び先進的な環太平洋パートナーシップ協定）への加入を正式に申請した。南米からの初の参加申請となり、貿易ルートの多様化とアジア太平洋地域との関係強化が目的とされる。
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 経済ニュース -->
-  <section class="category category-economy">
-    <div class="category-header">📈 経済ニュース</div>
-    <div class="cards-wrapper">
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://www.zaikei.co.jp/article/20260603/855659.html" target="_blank">
-            キオクシアが時価総額でトヨタを抜き国内トップに
-          </a>
-        </div>
-        <p class="card-summary">
-          AI向けメモリ需要の急増を背景にキオクシアHDの株価が急騰し、時価総額が49兆円に達してトヨタ自動車を上回り国内1位となった。22年ぶりの首位交代は日本経済のAIシフトを象徴する出来事として注目を集めている。
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://fx.minkabu.jp/news/369400" target="_blank">
-            ドル円が160円台で推移、円売り持ち高が史上最大規模に
-          </a>
-        </div>
-        <p class="card-summary">
-          6月9日の東京外国為替市場でドル円は160.18円付近で取引されている。ヘッジファンド等の投機筋による円の売り持ち高が遡及可能な2001年以降で最大の約3兆円に達したと報告されており、円安圧力が継続している。
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://www.nikkei.com/markets/currencies/" target="_blank">
-            日銀の6月利上げ確率が80%に上昇
-          </a>
-        </div>
-        <p class="card-summary">
-          市場では日銀が6月の金融政策決定会合で利上げを実施する確率が約80%まで織り込まれている。植田総裁は物価上昇への警戒を示しつつ「6月を含む利上げの是非についてしっかり議論する」と発言、マーケットの注目が集まっている。
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://www.nomura.co.jp/wealthstyle/article/0744/" target="_blank">
-            世界半導体市場が前年比89.9%増の1.5兆ドル規模へ
-          </a>
-        </div>
-        <p class="card-summary">
-          世界半導体市場統計（WSTS）は2026年の市場規模予測を前年比89.9%増の1兆5112億ドルと発表した。AI向け需要が牽引役となり、日本の半導体・電子部品関連株の上昇を後押ししている。
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 医療・健康 -->
-  <section class="category category-health">
-    <div class="category-header">🏥 医療・健康</div>
-    <div class="cards-wrapper">
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://hirotsu.clinic/blog/medical-fee-revision-2026-june-patient-impact/" target="_blank">
-            診療報酬改定で窓口負担が変化、マイナ保険証活用で差
-          </a>
-        </div>
-        <p class="card-summary">
-          2026年6月1日施行の診療報酬改定により、再診料が1点引き上げられ（3割負担で約3円増）、入院食費も1食730円に値上げされた。マイナ保険証の利用率向上を医療機関の加算要件に組み込むことで、デジタル化推進と患者負担のバランスが問われている。
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://www.jmedj.co.jp/blogs/product/product_27703" target="_blank">
-            改正医療法が成立、病床削減支援と電子カルテ100%化を推進
-          </a>
-        </div>
-        <p class="card-summary">
-          改正医療法が国会で成立し、地域医療構想に基づく病床数削減を支援する財政措置とともに、2030年までの電子カルテ普及率100%達成に向けた枠組みが法定化された。中小病院での導入負担軽減策も盛り込まれている。
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://www.qlifepro.com/news" target="_blank">
-            歯の欠損がフレイルの重症度と関連、東北大が発表
-          </a>
-        </div>
-        <p class="card-summary">
-          東北大学の研究グループは、歯が欠けた状態（欠損歯列）があるほどフレイル（身体・認知機能の低下）の重症度が高くなることを明らかにした。口腔ケアが高齢者の健康寿命延伸に重要であることを示す新たなエビデンスとして注目されている。
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://biobankjp.org/15661" target="_blank">
-            バイオバンク・ジャパン見学会を6月20日に開催
-          </a>
-        </div>
-        <p class="card-summary">
-          東京大学医科学研究所のバイオバンク・ジャパンは6月20日（土）に一般向け見学会を開催する。「つなげる、ひろげる、未来の医療」をテーマに、50万人超の検体・データを活用した個別化医療研究の最前線を紹介する。
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <a href="https://medical.jiji.com/" target="_blank">
-            感染予防ポスターの効果と副作用を日米比較で検証
-          </a>
-        </div>
-        <p class="card-summary">
-          関西学院大学の研究チームは、感染症予防を促すポスターが実際にどれほど行動変容をもたらすかについて日米の比較研究を実施した。文化的背景によってメッセージの受け取り方が異なり、過度な恐怖訴求は逆効果になる可能性があることが示された。
-        </p>
-      </div>
-
-    </div>
-  </section>
-
+  <div class="date">読み込み中...</div>
 </div>
-
-<footer>
-  © 2026 Daily News Summary｜自動生成ニュースまとめ
-</footer>
-
+<div class="container">
+  <div class="loading">⏳ エージェントが毎朝6時にニュースを更新します</div>
+</div>
+<div class="footer">Powered by Claude</div>
+<script>
+  document.querySelector('.date').textContent = new Date().toLocaleDateString('ja-JP', {year:'numeric',month:'long',day:'numeric',weekday:'short'});
+</script>
 </body>
 </html>
