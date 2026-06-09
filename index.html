@@ -10,34 +10,105 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif; background: #f0f2f5; color: #333; }
   .header { background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 24px 16px 20px; text-align: center; }
-  .header h1 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
-  .header .date { font-size: 13px; opacity: 0.8; }
+  .header h1 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .header .date { font-size: 13px; opacity: 0.75; }
   .container { max-width: 640px; margin: 0 auto; padding: 16px; }
-  .category { margin-bottom: 24px; }
-  .category-title { font-size: 15px; font-weight: 700; padding: 8px 14px; border-radius: 20px; display: inline-block; margin-bottom: 12px; color: white; }
+  .category { margin-bottom: 28px; }
+  .category-title { font-size: 14px; font-weight: 700; padding: 7px 16px; border-radius: 20px; display: inline-block; margin-bottom: 12px; color: white; }
   .cat-domestic { background: #e74c3c; }
   .cat-world    { background: #2980b9; }
   .cat-economy  { background: #27ae60; }
   .cat-health   { background: #8e44ad; }
-  .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-  .card a { color: #1a1a2e; font-size: 15px; font-weight: 600; text-decoration: none; line-height: 1.4; display: block; margin-bottom: 6px; }
-  .card a:hover { color: #2980b9; }
-  .card p { font-size: 13px; color: #666; line-height: 1.6; }
-  .loading { text-align: center; padding: 60px 20px; color: #999; font-size: 15px; }
-  .footer { text-align: center; padding: 20px; font-size: 12px; color: #aaa; }
+  .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .card a { color: #1a1a2e; font-size: 15px; font-weight: 600; text-decoration: none; line-height: 1.5; display: block; margin-bottom: 8px; }
+  .card p { font-size: 13px; color: #555; line-height: 1.7; }
+  .footer { text-align: center; padding: 24px 16px; font-size: 12px; color: #aaa; }
 </style>
 </head>
 <body>
 <div class="header">
   <h1>📰 今日のニュースまとめ</h1>
-  <div class="date">読み込み中...</div>
+  <div class="date">2026年6月9日（火）更新</div>
 </div>
 <div class="container">
-  <div class="loading">⏳ エージェントが毎朝6時にニュースを更新します</div>
+
+  <div class="category">
+    <div class="category-title cat-domestic">🗾 国内ニュース</div>
+    <div class="card">
+      <a href="https://news.web.nhk/newsweb" target="_blank">【速報】宇都宮でクマを麻酔銃で捕獲　福島・岩手でも出没相次ぐ</a>
+      <p>宇都宮市内に出没したクマが麻酔銃を使って捕獲された。福島県や岩手県でも相次いでクマの目撃情報が報告されており、各地で警戒が続いている。</p>
+    </div>
+    <div class="card">
+      <a href="https://www.nikkei.com/markets/stocks/" target="_blank">日経平均、一時6万8000円台を突破　TOPIXも4000超え</a>
+      <p>東京株式市場で日経平均株価が初めて6万8000円台を記録。AI関連銘柄に買いが集中し、TOPIXも節目の4000を上回った。インテルの急伸が市場全体の追い風となっている。</p>
+    </div>
+    <div class="card">
+      <a href="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtcGhHZ0pLVUNnQVAB?hl=ja&gl=JP&ceid=JP%3Aja" target="_blank">G7サミット　首脳宣言の取りまとめ見送りとの見方が強まる</a>
+      <p>現在開催中のG7サミットで、首脳宣言の取りまとめが見送られるとの観測が広がっている。加盟国間の対立が背景にあるとみられ、国際協調の行方が注目される。</p>
+    </div>
+    <div class="card">
+      <a href="https://news.web.nhk/newsweb" target="_blank">新たな防災気象情報の運用開始へ　より迅速な避難を促す</a>
+      <p>気象庁が新たな防災気象情報の運用を開始する方針を発表。住民がより迅速に避難行動を取れるよう、情報の発表タイミングや表現が見直される。</p>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-title cat-world">🌍 国際ニュース</div>
+    <div class="card">
+      <a href="https://news.infoseek.co.jp/g/world/" target="_blank">フィリピン南部でM7.8の強震　死者32人・大規模市場に甚大被害</a>
+      <p>フィリピン南部でマグニチュード7.8の大地震が発生し、少なくとも32人が死亡した。大規模な市場が倒壊するなど甚大な被害が出ており、救助活動が続いている。</p>
+    </div>
+    <div class="card">
+      <a href="https://www.web.nhk/tv/an/kokusaihoudou/pl/series-tep-8M689W8RVX" target="_blank">日韓世論調査「日韓関係は良好」が過去最高水準に</a>
+      <p>日韓両国で実施された世論調査で「日韓関係は良好」と回答した割合が過去最高水準に達した。両国間の文化交流や経済連携の深まりが背景にあるとみられる。</p>
+    </div>
+    <div class="card">
+      <a href="https://news.infoseek.co.jp/g/world/" target="_blank">アルゼンチンがCPTPP加入を正式申請　貿易圏拡大へ</a>
+      <p>アルゼンチン政府がTPP後継のCPTPPへの加入を正式に申請した。南米からの初の加入申請として注目を集めており、加盟国間での審査が始まる。</p>
+    </div>
+    <div class="card">
+      <a href="https://news.infoseek.co.jp/g/world/" target="_blank">中国・浙江省のAI×環境モデルに各国首脳が注目　相次ぎ視察</a>
+      <p>中国浙江省がAI技術と環境保全を両立した発展モデルとして国際的な注目を集めている。複数の国家首脳が相次いで訪問し、その先進的な取り組みを視察した。</p>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-title cat-economy">📈 経済ニュース</div>
+    <div class="card">
+      <a href="https://www.nikkei.com/" target="_blank">日銀、今月会合で利上げ決定へ　政策金利0.75%→1.0%に引き上げ</a>
+      <p>日本銀行は今月15〜16日の金融政策決定会合で、政策金利を現行の0.75%から1.0%に引き上げる方針を固めた。物価の上振れリスクへの対応が目的で、国債買い入れ縮小も2027年以降に停止する方向で調整中。</p>
+    </div>
+    <div class="card">
+      <a href="https://www.nikkei.com/markets/stocks/" target="_blank">日経平均629円高　インテル急伸でAI関連全体に買い</a>
+      <p>東京市場の午前終値で日経平均が629円高。米インテルの株価急伸を受けAI半導体関連銘柄全体に買いが広がった。円安の進行も輸出関連株の追い風となっている。</p>
+    </div>
+    <div class="card">
+      <a href="https://www.nikkei.com/" target="_blank">中東エネルギー施設の復旧に7兆円試算　日本企業関連施設にも被害</a>
+      <p>米国とイランの軍事衝突で日本企業が関与する中東の石油・ガス施設7カ所周辺でも被害が確認された。施設全体の復旧費用は7兆円規模との試算が出ており、エネルギー価格への影響が懸念される。</p>
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-title cat-health">🏥 医療・健康</div>
+    <div class="card">
+      <a href="https://hirotsu.clinic/blog/medical-fee-revision-2026-june-patient-impact/" target="_blank">6月から診療報酬改定が施行　窓口負担・領収書に変化</a>
+      <p>2026年度の診療報酬改定が6月1日から施行された。医療従事者の賃上げ支援やマイナ保険証の利用促進が柱で、患者の窓口負担額や領収書の表示内容が一部変更される。</p>
+    </div>
+    <div class="card">
+      <a href="https://www.jmedj.co.jp/blogs/product/product_27703" target="_blank">改正医療法が成立　病床数削減支援・電子カルテ100%普及へ</a>
+      <p>改正医療法が国会で成立した。地域の実情に応じた病床削減を支援する仕組みが整備されるとともに、電子カルテの普及率100%達成に向けた義務化の工程表も盛り込まれた。</p>
+    </div>
+    <div class="card">
+      <a href="https://www.qlifepro.com/news" target="_blank">研究：1日10分の仰臥位エクササイズで立位バランスと敏捷性が向上</a>
+      <p>1日10分間の仰向けエクササイズを継続することで立位バランスと俊敏性が有意に改善することが研究で明らかになった。高齢者の転倒予防への応用が期待される。</p>
+    </div>
+    <div class="card">
+      <a href="https://news.yahoo.co.jp/articles/c09305551a9a7ff5e8f3e253c32bc153fefa103b" target="_blank">歯の欠損とフレイル重症化に食事の質が関与　新研究が示す</a>
+      <p>歯が欠損している高齢者でフレイル（虚弱）が重症化するリスクに食事の質が大きく関与していることが研究で示された。口腔ケアと食生活改善の両立が介護予防の鍵となる可能性がある。</p>
+    </div>
+  </div>
+
 </div>
-<div class="footer">Powered by Claude</div>
-<script>
-  document.querySelector('.date').textContent = new Date().toLocaleDateString('ja-JP', {year:'numeric',month:'long',day:'numeric',weekday:'short'});
-</script>
+<div class="footer">📰 毎朝6時更新 ・ Powered by Claude<br>各タイトルをタップで元記事へ</div>
 </body>
 </html>
