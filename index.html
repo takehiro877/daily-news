@@ -12,21 +12,47 @@
   .header { background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 24px 16px 20px; text-align: center; }
   .header h1 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
   .header .date { font-size: 13px; opacity: 0.75; }
+  /* タブナビ */
+  .tabs { display: flex; overflow-x: auto; gap: 8px; padding: 12px 16px; background: white; border-bottom: 1px solid #e8e8e8; position: sticky; top: 0; z-index: 10; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: 0 0 auto; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; border: 2px solid transparent; background: #f0f2f5; color: #666; white-space: nowrap; }
+  .tab.active, .tab:hover { color: white; }
+  .tab[data-cat="domestic"].active { background: #e74c3c; }
+  .tab[data-cat="world"].active   { background: #2980b9; }
+  .tab[data-cat="economy"].active { background: #27ae60; }
+  .tab[data-cat="health"].active  { background: #8e44ad; }
+  .tab[data-cat="sports"].active  { background: #e67e22; }
   .container { max-width: 640px; margin: 0 auto; padding: 16px; }
-  .category { margin-bottom: 28px; }
-  .category-title { font-size: 14px; font-weight: 700; padding: 7px 16px; border-radius: 20px; display: inline-block; margin-bottom: 12px; color: white; }
+  .section { display: none; }
+  .section.active { display: block; }
+  .category-title { font-size: 14px; font-weight: 700; padding: 7px 16px; border-radius: 20px; display: inline-block; margin-bottom: 14px; color: white; }
   .cat-domestic { background: #e74c3c; }
   .cat-world    { background: #2980b9; }
   .cat-economy  { background: #27ae60; }
   .cat-health   { background: #8e44ad; }
+  .cat-sports   { background: #e67e22; }
   .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
   .card a { color: #1a1a2e; font-size: 15px; font-weight: 600; text-decoration: none; line-height: 1.5; display: block; margin-bottom: 8px; }
   .card p { font-size: 13px; color: #555; line-height: 1.7; }
+  /* 成績カード */
+  .stat-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .stat-card h3 { font-size: 15px; font-weight: 700; color: #1a1a2e; margin-bottom: 10px; }
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 8px; }
+  .stat-item { background: #f8f9fa; border-radius: 8px; padding: 8px 4px; text-align: center; }
+  .stat-item .val { font-size: 18px; font-weight: 800; color: #e67e22; }
+  .stat-item .lbl { font-size: 10px; color: #999; margin-top: 2px; }
+  .stat-card p { font-size: 13px; color: #555; line-height: 1.6; }
+  /* YouTube */
   .yt-card { background: white; border-radius: 12px; overflow: hidden; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
-  .yt-label { font-size: 11px; font-weight: 700; color: #e74c3c; padding: 10px 14px 6px; }
-  .yt-title { font-size: 13px; font-weight: 600; color: #1a1a2e; padding: 0 14px 12px; line-height: 1.4; }
+  .yt-label { font-size: 11px; font-weight: 700; color: #e74c3c; padding: 10px 14px 4px; }
+  .yt-title { font-size: 13px; font-weight: 600; color: #1a1a2e; padding: 0 14px 10px; line-height: 1.4; }
   .yt-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
   .yt-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+  /* 甲子園カウントダウン */
+  .koshien-banner { background: linear-gradient(135deg, #c0392b, #e74c3c); color: white; border-radius: 12px; padding: 16px; margin-bottom: 10px; text-align: center; }
+  .koshien-banner h3 { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+  .koshien-banner .days { font-size: 36px; font-weight: 900; margin: 8px 0 4px; }
+  .koshien-banner p { font-size: 12px; opacity: 0.9; }
   .footer { text-align: center; padding: 24px 16px; font-size: 12px; color: #aaa; }
 </style>
 </head>
@@ -35,11 +61,20 @@
   <h1>📰 今日のニュースまとめ</h1>
   <div class="date">2026年6月9日（火）更新</div>
 </div>
+
+<!-- タブナビ -->
+<div class="tabs">
+  <div class="tab active" data-cat="domestic">🗾 国内</div>
+  <div class="tab" data-cat="world">🌍 国際</div>
+  <div class="tab" data-cat="economy">📈 経済</div>
+  <div class="tab" data-cat="health">🏥 医療</div>
+  <div class="tab" data-cat="sports">⚾ スポーツ</div>
+</div>
+
 <div class="container">
 
-  <!-- 国内ニュース -->
-  <div class="category">
-    <div class="category-title cat-domestic">🗾 国内ニュース</div>
+  <!-- 国内 -->
+  <div class="section active" id="sec-domestic">
     <div class="card">
       <a href="https://news.web.nhk/newsweb" target="_blank">【速報】宇都宮でクマを麻酔銃で捕獲　福島・岩手でも出没相次ぐ</a>
       <p>宇都宮市内に出没したクマが麻酔銃を使って捕獲された。福島県や岩手県でも相次いでクマの目撃情報が報告されており、各地で警戒が続いている。</p>
@@ -59,15 +94,12 @@
     <div class="yt-card">
       <div class="yt-label">▶ 関連動画 / FNN プライムオンライン</div>
       <div class="yt-title">【イッキ見】最新ニュース 6月9日朝</div>
-      <div class="yt-wrap">
-        <iframe src="https://www.youtube.com/embed/njG3diEUZQo?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-      </div>
+      <div class="yt-wrap"><iframe src="https://www.youtube.com/embed/njG3diEUZQo?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
     </div>
   </div>
 
-  <!-- 国際ニュース -->
-  <div class="category">
-    <div class="category-title cat-world">🌍 国際ニュース</div>
+  <!-- 国際 -->
+  <div class="section" id="sec-world">
     <div class="card">
       <a href="https://news.infoseek.co.jp/g/world/" target="_blank">フィリピン南部でM8.2の大地震　死者30人超・日本にも津波注意報</a>
       <p>フィリピン・ミンダナオ島付近でM8.2の大地震が発生し、死者は30人を超えた。関東〜奄美地方にも津波注意報が発令され最大1.5mの津波が観測された地域もある。</p>
@@ -75,9 +107,7 @@
     <div class="yt-card">
       <div class="yt-label">▶ 関連動画 / テレ朝 報道ステーション</div>
       <div class="yt-title">死者30人超…フィリピン付近でM8.2の地震・津波観測</div>
-      <div class="yt-wrap">
-        <iframe src="https://www.youtube.com/embed/TBXgDnSA0io?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-      </div>
+      <div class="yt-wrap"><iframe src="https://www.youtube.com/embed/TBXgDnSA0io?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
     </div>
     <div class="card">
       <a href="https://www.web.nhk/tv/an/kokusaihoudou/pl/series-tep-8M689W8RVX" target="_blank">日韓世論調査「日韓関係は良好」が過去最高水準に</a>
@@ -87,11 +117,14 @@
       <a href="https://news.infoseek.co.jp/g/world/" target="_blank">アルゼンチンがCPTPP加入を正式申請　貿易圏拡大へ</a>
       <p>アルゼンチン政府がCPTPPへの加入を正式に申請した。南米からの初の加入申請として注目を集めており、加盟国間での審査が始まる。</p>
     </div>
+    <div class="card">
+      <a href="https://news.infoseek.co.jp/g/world/" target="_blank">中国・浙江省のAI×環境モデルに各国首脳が注目　相次ぎ視察</a>
+      <p>中国浙江省がAI技術と環境保全を両立した発展モデルとして国際的な注目を集めている。複数の国家首脳が相次いで訪問し先進的な取り組みを視察した。</p>
+    </div>
   </div>
 
-  <!-- 経済ニュース -->
-  <div class="category">
-    <div class="category-title cat-economy">📈 経済ニュース</div>
+  <!-- 経済 -->
+  <div class="section" id="sec-economy">
     <div class="card">
       <a href="https://www.nikkei.com/" target="_blank">日銀、今月会合で利上げ決定へ　政策金利0.75%→1.0%に</a>
       <p>日本銀行は15〜16日の会合で政策金利を0.75%から1.0%に引き上げる方針を固めた。31年ぶりの高水準で、住宅ローン・預金金利への影響が注目される。</p>
@@ -99,9 +132,7 @@
     <div class="yt-card">
       <div class="yt-label">▶ 関連動画 / TBS NEWS DIG</div>
       <div class="yt-title">日銀1%に利上げへ 物価や住宅ローン…暮らしへのメリット・デメリットは？</div>
-      <div class="yt-wrap">
-        <iframe src="https://www.youtube.com/embed/0zMAMggHjQo?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-      </div>
+      <div class="yt-wrap"><iframe src="https://www.youtube.com/embed/0zMAMggHjQo?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
     </div>
     <div class="card">
       <a href="https://www.nikkei.com/markets/stocks/" target="_blank">日経平均629円高　インテル急伸でAI関連全体に買い</a>
@@ -114,22 +145,19 @@
     <div class="yt-card">
       <div class="yt-label">▶ 関連動画 / TBS NEWS DIG LIVE</div>
       <div class="yt-title">【LIVE】昼のニュース 最新情報など（6月9日）</div>
-      <div class="yt-wrap">
-        <iframe src="https://www.youtube.com/embed/ESIpfBacZVs?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-      </div>
+      <div class="yt-wrap"><iframe src="https://www.youtube.com/embed/ESIpfBacZVs?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
     </div>
   </div>
 
-  <!-- 医療・健康 -->
-  <div class="category">
-    <div class="category-title cat-health">🏥 医療・健康</div>
+  <!-- 医療 -->
+  <div class="section" id="sec-health">
     <div class="card">
       <a href="https://hirotsu.clinic/blog/medical-fee-revision-2026-june-patient-impact/" target="_blank">6月から診療報酬改定が施行　窓口負担・領収書に変化</a>
       <p>2026年度の診療報酬改定が6月1日から施行。医療従事者の賃上げ支援やマイナ保険証の利用促進が柱で、患者の窓口負担額が一部変更される。</p>
     </div>
     <div class="card">
       <a href="https://www.jmedj.co.jp/blogs/product/product_27703" target="_blank">改正医療法が成立　病床数削減支援・電子カルテ100%普及へ</a>
-      <p>改正医療法が国会で成立。地域の実情に応じた病床削減を支援する仕組みが整備されるとともに、電子カルテの普及率100%達成に向けた義務化の工程表も盛り込まれた。</p>
+      <p>改正医療法が国会で成立。電子カルテの普及率100%達成に向けた義務化の工程表も盛り込まれた。</p>
     </div>
     <div class="card">
       <a href="https://www.qlifepro.com/news" target="_blank">研究：1日10分の仰臥位エクササイズで立位バランスと敏捷性が向上</a>
@@ -141,7 +169,67 @@
     </div>
   </div>
 
+  <!-- スポーツ -->
+  <div class="section" id="sec-sports">
+
+    <!-- 甲子園カウントダウン -->
+    <div class="koshien-banner">
+      <h3>🏟 夏の甲子園2026まで</h3>
+      <div class="days">あと57日</div>
+      <p>第108回大会 8月5日〜22日 ＠阪神甲子園球場<br>地方予選は6月下旬から順次開幕！</p>
+    </div>
+
+    <!-- 大谷翔平 成績 -->
+    <div class="stat-card">
+      <h3>🇺🇸 大谷翔平（ドジャース）2026年成績</h3>
+      <div class="stat-grid">
+        <div class="stat-item"><div class="val">.306</div><div class="lbl">打率</div></div>
+        <div class="stat-item"><div class="val">6</div><div class="lbl">本塁打</div></div>
+        <div class="stat-item"><div class="val">13</div><div class="lbl">打点</div></div>
+        <div class="stat-item"><div class="val">.947</div><div class="lbl">OPS</div></div>
+      </div>
+      <p>6月8日、2戦連続のマルチ安打を記録。月間打率.480・OPS.939でリーグトップに浮上。投手としても日本人トップの6勝を挙げるなど二刀流で絶好調。</p>
+    </div>
+    <div class="yt-card">
+      <div class="yt-label">▶ 関連動画 / MLB ハイライト</div>
+      <div class="yt-title">大谷翔平 2戦連続マルチ安打！ドジャースvsエンゼルス（6月8日）</div>
+      <div class="yt-wrap"><iframe src="https://www.youtube.com/embed/dEPXGK8edIU?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+    </div>
+
+    <!-- NPB -->
+    <div class="card">
+      <a href="https://www.baseballchannel.jp/npb/268458/" target="_blank">【本日の試合】6月9日のプロ野球　注目はソフトバンク対阪神</a>
+      <p>6月9日は1軍公式戦6試合が開催。注目カードは福岡ソフトバンクホークス対阪神タイガース初戦。ロッテ対中日（ZOZOマリン）など全試合が18時前後から始まる。</p>
+    </div>
+    <div class="yt-card">
+      <div class="yt-label">▶ 関連動画 / NPB公式 プロ野球ハイライト</div>
+      <div class="yt-title">【ハイライト】中日 vs. 埼玉西武｜プロ野球2026セ・パ交流戦（6月6日）</div>
+      <div class="yt-wrap"><iframe src="https://www.youtube.com/embed/1rISnsoIePc?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+    </div>
+
+    <!-- 他の日本人メジャー -->
+    <div class="card">
+      <a href="https://www.baseballchannel.jp/mlb/257197/" target="_blank">MLB日本人選手まとめ　佐々木朗希・山本由伸ほか最新成績</a>
+      <p>佐々木朗希（エンゼルス）は6月6日のドジャース戦に先発。山本由伸（ドジャース）も安定した投球を続けており、日本人投手がMLBで存在感を示している。</p>
+    </div>
+
+  </div>
+
 </div>
+
 <div class="footer">📰 毎朝6時更新 ・ Powered by Claude<br>各タイトルをタップで元記事へ</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const sections = document.querySelectorAll('.section');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('sec-' + tab.dataset.cat).classList.add('active');
+    });
+  });
+</script>
 </body>
 </html>
