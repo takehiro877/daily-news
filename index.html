@@ -21,7 +21,12 @@
   .cat-health   { background: #8e44ad; }
   .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
   .card a { color: #1a1a2e; font-size: 15px; font-weight: 600; text-decoration: none; line-height: 1.5; display: block; margin-bottom: 8px; }
-  .card p { font-size: 13px; color: #555; line-height: 1.7; }
+  .card p { font-size: 13px; color: #555; line-height: 1.7; margin-bottom: 0; }
+  .yt-label { font-size: 11px; font-weight: 700; color: #e74c3c; margin: 12px 0 6px; display: flex; align-items: center; gap: 4px; }
+  .yt-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; background: #000; }
+  .yt-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+  .section-video { background: white; border-radius: 12px; padding: 16px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .section-video .yt-title { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 10px; }
   .footer { text-align: center; padding: 24px 16px; font-size: 12px; color: #aaa; }
 </style>
 </head>
@@ -32,6 +37,7 @@
 </div>
 <div class="container">
 
+  <!-- 国内ニュース -->
   <div class="category">
     <div class="category-title cat-domestic">🗾 国内ニュース</div>
     <div class="card">
@@ -50,13 +56,25 @@
       <a href="https://news.web.nhk/newsweb" target="_blank">新たな防災気象情報の運用開始へ　より迅速な避難を促す</a>
       <p>気象庁が新たな防災気象情報の運用を開始する方針を発表。住民がより迅速に避難行動を取れるよう、情報の発表タイミングや表現が見直される。</p>
     </div>
+    <!-- 関連動画 -->
+    <div class="section-video">
+      <div class="yt-label">▶ 関連動画｜FNN 6月9日 朝の最新ニュース</div>
+      <div class="yt-wrap">
+        <iframe src="https://www.youtube.com/embed/njG3diEUZQo" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
   </div>
 
+  <!-- 国際ニュース -->
   <div class="category">
     <div class="category-title cat-world">🌍 国際ニュース</div>
     <div class="card">
-      <a href="https://news.infoseek.co.jp/g/world/" target="_blank">フィリピン南部でM7.8の強震　死者32人・大規模市場に甚大被害</a>
-      <p>フィリピン南部でマグニチュード7.8の大地震が発生し、少なくとも32人が死亡した。大規模な市場が倒壊するなど甚大な被害が出ており、救助活動が続いている。</p>
+      <a href="https://news.infoseek.co.jp/g/world/" target="_blank">フィリピン南部でM8.2の大地震　死者30人超・日本にも津波注意報</a>
+      <p>フィリピン・ミンダナオ島付近でマグニチュード8.2の大地震が発生し、死者は30人を超えた。日本の関東〜奄美地方にも津波注意報が発令され、最大1.5mの津波が観測された地域もある。</p>
+      <div class="yt-label">▶ 関連動画｜報道ステーション（テレ朝）</div>
+      <div class="yt-wrap">
+        <iframe src="https://www.youtube.com/embed/TBXgDnSA0io" allowfullscreen loading="lazy"></iframe>
+      </div>
     </div>
     <div class="card">
       <a href="https://www.web.nhk/tv/an/kokusaihoudou/pl/series-tep-8M689W8RVX" target="_blank">日韓世論調査「日韓関係は良好」が過去最高水準に</a>
@@ -68,26 +86,39 @@
     </div>
     <div class="card">
       <a href="https://news.infoseek.co.jp/g/world/" target="_blank">中国・浙江省のAI×環境モデルに各国首脳が注目　相次ぎ視察</a>
-      <p>中国浙江省がAI技術と環境保全を両立した発展モデルとして国際的な注目を集めている。複数の国家首脳が相次いで訪問し、その先進的な取り組みを視察した。</p>
+      <p>中国浙江省がAI技術と環境保全を両立した発展モデルとして国際的な注目を集めている。複数の国家首脳が相次いで訪問し先進的な取り組みを視察した。</p>
     </div>
   </div>
 
+  <!-- 経済ニュース -->
   <div class="category">
     <div class="category-title cat-economy">📈 経済ニュース</div>
     <div class="card">
       <a href="https://www.nikkei.com/" target="_blank">日銀、今月会合で利上げ決定へ　政策金利0.75%→1.0%に引き上げ</a>
-      <p>日本銀行は今月15〜16日の金融政策決定会合で、政策金利を現行の0.75%から1.0%に引き上げる方針を固めた。物価の上振れリスクへの対応が目的で、国債買い入れ縮小も2027年以降に停止する方向で調整中。</p>
+      <p>日本銀行は今月15〜16日の金融政策決定会合で、政策金利を現行の0.75%から1.0%に引き上げる方針を固めた。物価の上振れリスクへの対応が目的で、住宅ローンへの影響も注目される。</p>
+      <div class="yt-label">▶ 関連動画｜TBS NEWS DIG 日銀利上げ解説</div>
+      <div class="yt-wrap">
+        <iframe src="https://www.youtube.com/embed/0zMAMggHjQo" allowfullscreen loading="lazy"></iframe>
+      </div>
     </div>
     <div class="card">
-      <a href="https://www.nikkei.com/markets/stocks/" target="_blank">日経平均629円高　インテル急伸でAI関連全体に買い</a>
+      <a href="https://www.nikkei.com/markets/stocks/" target="_blank">日経平均629円高　インテル急伸でAI関連全体に買い</div>
       <p>東京市場の午前終値で日経平均が629円高。米インテルの株価急伸を受けAI半導体関連銘柄全体に買いが広がった。円安の進行も輸出関連株の追い風となっている。</p>
     </div>
     <div class="card">
       <a href="https://www.nikkei.com/" target="_blank">中東エネルギー施設の復旧に7兆円試算　日本企業関連施設にも被害</a>
       <p>米国とイランの軍事衝突で日本企業が関与する中東の石油・ガス施設7カ所周辺でも被害が確認された。施設全体の復旧費用は7兆円規模との試算が出ており、エネルギー価格への影響が懸念される。</p>
     </div>
+    <!-- TBS昼のニュース -->
+    <div class="section-video">
+      <div class="yt-label">▶ 関連動画｜TBS NEWS DIG 6月9日 昼のニュース LIVE</div>
+      <div class="yt-wrap">
+        <iframe src="https://www.youtube.com/embed/ESIpfBacZVs" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
   </div>
 
+  <!-- 医療・健康 -->
   <div class="category">
     <div class="category-title cat-health">🏥 医療・健康</div>
     <div class="card">
@@ -104,7 +135,7 @@
     </div>
     <div class="card">
       <a href="https://news.yahoo.co.jp/articles/c09305551a9a7ff5e8f3e253c32bc153fefa103b" target="_blank">歯の欠損とフレイル重症化に食事の質が関与　新研究が示す</a>
-      <p>歯が欠損している高齢者でフレイル（虚弱）が重症化するリスクに食事の質が大きく関与していることが研究で示された。口腔ケアと食生活改善の両立が介護予防の鍵となる可能性がある。</p>
+      <p>歯が欠損している高齢者でフレイルが重症化するリスクに食事の質が大きく関与していることが研究で示された。口腔ケアと食生活改善の両立が介護予防の鍵となる可能性がある。</p>
     </div>
   </div>
 
