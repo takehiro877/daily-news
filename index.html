@@ -20,13 +20,17 @@
   .cat-economy  { background: #27ae60; }
   .cat-health   { background: #8e44ad; }
   .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
-  .card a { color: #1a1a2e; font-size: 15px; font-weight: 600; text-decoration: none; line-height: 1.5; display: block; margin-bottom: 8px; }
-  .card p { font-size: 13px; color: #555; line-height: 1.7; margin-bottom: 0; }
-  .yt-label { font-size: 11px; font-weight: 700; color: #e74c3c; margin: 12px 0 6px; display: flex; align-items: center; gap: 4px; }
-  .yt-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; background: #000; }
-  .yt-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-  .section-video { background: white; border-radius: 12px; padding: 16px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
-  .section-video .yt-title { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 10px; }
+  .card a.news-link { color: #1a1a2e; font-size: 15px; font-weight: 600; text-decoration: none; line-height: 1.5; display: block; margin-bottom: 8px; }
+  .card p { font-size: 13px; color: #555; line-height: 1.7; }
+  /* YouTube サムネイルカード */
+  .yt-card { background: white; border-radius: 12px; overflow: hidden; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); display: block; text-decoration: none; color: inherit; }
+  .yt-thumb { position: relative; width: 100%; }
+  .yt-thumb img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+  .yt-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 56px; height: 56px; background: rgba(255,0,0,0.85); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .yt-play::after { content: ''; border-left: 20px solid white; border-top: 12px solid transparent; border-bottom: 12px solid transparent; margin-left: 4px; }
+  .yt-info { padding: 12px 14px; }
+  .yt-label-tag { font-size: 10px; font-weight: 700; color: #e74c3c; margin-bottom: 4px; }
+  .yt-info p { font-size: 13px; font-weight: 600; color: #1a1a2e; line-height: 1.4; }
   .footer { text-align: center; padding: 24px 16px; font-size: 12px; color: #aaa; }
 </style>
 </head>
@@ -41,52 +45,57 @@
   <div class="category">
     <div class="category-title cat-domestic">🗾 国内ニュース</div>
     <div class="card">
-      <a href="https://news.web.nhk/newsweb" target="_blank">【速報】宇都宮でクマを麻酔銃で捕獲　福島・岩手でも出没相次ぐ</a>
+      <a class="news-link" href="https://news.web.nhk/newsweb" target="_blank">【速報】宇都宮でクマを麻酔銃で捕獲　福島・岩手でも出没相次ぐ</a>
       <p>宇都宮市内に出没したクマが麻酔銃を使って捕獲された。福島県や岩手県でも相次いでクマの目撃情報が報告されており、各地で警戒が続いている。</p>
     </div>
     <div class="card">
-      <a href="https://www.nikkei.com/markets/stocks/" target="_blank">日経平均、一時6万8000円台を突破　TOPIXも4000超え</a>
-      <p>東京株式市場で日経平均株価が初めて6万8000円台を記録。AI関連銘柄に買いが集中し、TOPIXも節目の4000を上回った。インテルの急伸が市場全体の追い風となっている。</p>
+      <a class="news-link" href="https://www.nikkei.com/markets/stocks/" target="_blank">日経平均、一時6万8000円台を突破　TOPIXも4000超え</a>
+      <p>東京株式市場で日経平均株価が初めて6万8000円台を記録。AI関連銘柄に買いが集中し、TOPIXも節目の4000を上回った。</p>
     </div>
     <div class="card">
-      <a href="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtcGhHZ0pLVUNnQVAB?hl=ja&gl=JP&ceid=JP%3Aja" target="_blank">G7サミット　首脳宣言の取りまとめ見送りとの見方が強まる</a>
-      <p>現在開催中のG7サミットで、首脳宣言の取りまとめが見送られるとの観測が広がっている。加盟国間の対立が背景にあるとみられ、国際協調の行方が注目される。</p>
+      <a class="news-link" href="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtcGhHZ0pLVUNnQVAB?hl=ja&gl=JP&ceid=JP%3Aja" target="_blank">G7サミット　首脳宣言の取りまとめ見送りとの見方が強まる</a>
+      <p>G7サミットで首脳宣言の取りまとめが見送られるとの観測が広がっている。加盟国間の対立が背景にあるとみられる。</p>
     </div>
     <div class="card">
-      <a href="https://news.web.nhk/newsweb" target="_blank">新たな防災気象情報の運用開始へ　より迅速な避難を促す</a>
-      <p>気象庁が新たな防災気象情報の運用を開始する方針を発表。住民がより迅速に避難行動を取れるよう、情報の発表タイミングや表現が見直される。</p>
+      <a class="news-link" href="https://news.web.nhk/newsweb" target="_blank">新たな防災気象情報の運用開始へ　より迅速な避難を促す</a>
+      <p>気象庁が新たな防災気象情報の運用を開始する方針を発表。情報の発表タイミングや表現が見直される。</p>
     </div>
-    <!-- 関連動画 -->
-    <div class="section-video">
-      <div class="yt-label">▶ 関連動画｜FNN 6月9日 朝の最新ニュース</div>
-      <div class="yt-wrap">
-        <iframe src="https://www.youtube.com/embed/njG3diEUZQo" allowfullscreen loading="lazy"></iframe>
+    <a class="yt-card" href="https://www.youtube.com/watch?v=njG3diEUZQo" target="_blank">
+      <div class="yt-thumb">
+        <img src="https://img.youtube.com/vi/njG3diEUZQo/hqdefault.jpg" alt="FNN 6月9日朝のニュース">
+        <div class="yt-play"></div>
       </div>
-    </div>
+      <div class="yt-info">
+        <div class="yt-label-tag">▶ 関連動画 / FNN</div>
+        <p>【イッキ見】最新ニュース 6月9日朝〈FNNプライムオンライン〉</p>
+      </div>
+    </a>
   </div>
 
   <!-- 国際ニュース -->
   <div class="category">
     <div class="category-title cat-world">🌍 国際ニュース</div>
     <div class="card">
-      <a href="https://news.infoseek.co.jp/g/world/" target="_blank">フィリピン南部でM8.2の大地震　死者30人超・日本にも津波注意報</a>
-      <p>フィリピン・ミンダナオ島付近でマグニチュード8.2の大地震が発生し、死者は30人を超えた。日本の関東〜奄美地方にも津波注意報が発令され、最大1.5mの津波が観測された地域もある。</p>
-      <div class="yt-label">▶ 関連動画｜報道ステーション（テレ朝）</div>
-      <div class="yt-wrap">
-        <iframe src="https://www.youtube.com/embed/TBXgDnSA0io" allowfullscreen loading="lazy"></iframe>
+      <a class="news-link" href="https://news.infoseek.co.jp/g/world/" target="_blank">フィリピン南部でM8.2の大地震　死者30人超・日本にも津波注意報</a>
+      <p>フィリピン・ミンダナオ島付近でM8.2の大地震が発生し、死者は30人を超えた。関東〜奄美地方にも津波注意報が発令され最大1.5mの津波が観測された地域もある。</p>
+    </div>
+    <a class="yt-card" href="https://www.youtube.com/watch?v=TBXgDnSA0io" target="_blank">
+      <div class="yt-thumb">
+        <img src="https://img.youtube.com/vi/TBXgDnSA0io/hqdefault.jpg" alt="フィリピン地震 報道ステーション">
+        <div class="yt-play"></div>
       </div>
+      <div class="yt-info">
+        <div class="yt-label-tag">▶ 関連動画 / テレ朝 報道ステーション</div>
+        <p>死者30人超…約1.5mの津波観測 フィリピン付近でM8.2の地震</p>
+      </div>
+    </a>
+    <div class="card">
+      <a class="news-link" href="https://www.web.nhk/tv/an/kokusaihoudou/pl/series-tep-8M689W8RVX" target="_blank">日韓世論調査「日韓関係は良好」が過去最高水準に</a>
+      <p>日韓両国の世論調査で「日韓関係は良好」と回答した割合が過去最高水準に達した。文化交流や経済連携の深まりが背景にあるとみられる。</p>
     </div>
     <div class="card">
-      <a href="https://www.web.nhk/tv/an/kokusaihoudou/pl/series-tep-8M689W8RVX" target="_blank">日韓世論調査「日韓関係は良好」が過去最高水準に</a>
-      <p>日韓両国で実施された世論調査で「日韓関係は良好」と回答した割合が過去最高水準に達した。両国間の文化交流や経済連携の深まりが背景にあるとみられる。</p>
-    </div>
-    <div class="card">
-      <a href="https://news.infoseek.co.jp/g/world/" target="_blank">アルゼンチンがCPTPP加入を正式申請　貿易圏拡大へ</a>
-      <p>アルゼンチン政府がTPP後継のCPTPPへの加入を正式に申請した。南米からの初の加入申請として注目を集めており、加盟国間での審査が始まる。</p>
-    </div>
-    <div class="card">
-      <a href="https://news.infoseek.co.jp/g/world/" target="_blank">中国・浙江省のAI×環境モデルに各国首脳が注目　相次ぎ視察</a>
-      <p>中国浙江省がAI技術と環境保全を両立した発展モデルとして国際的な注目を集めている。複数の国家首脳が相次いで訪問し先進的な取り組みを視察した。</p>
+      <a class="news-link" href="https://news.infoseek.co.jp/g/world/" target="_blank">アルゼンチンがCPTPP加入を正式申請　貿易圏拡大へ</a>
+      <p>アルゼンチン政府がCPTPPへの加入を正式に申請した。南米からの初の加入申請として注目を集めており、加盟国間での審査が始まる。</p>
     </div>
   </div>
 
@@ -94,52 +103,61 @@
   <div class="category">
     <div class="category-title cat-economy">📈 経済ニュース</div>
     <div class="card">
-      <a href="https://www.nikkei.com/" target="_blank">日銀、今月会合で利上げ決定へ　政策金利0.75%→1.0%に引き上げ</a>
-      <p>日本銀行は今月15〜16日の金融政策決定会合で、政策金利を現行の0.75%から1.0%に引き上げる方針を固めた。物価の上振れリスクへの対応が目的で、住宅ローンへの影響も注目される。</p>
-      <div class="yt-label">▶ 関連動画｜TBS NEWS DIG 日銀利上げ解説</div>
-      <div class="yt-wrap">
-        <iframe src="https://www.youtube.com/embed/0zMAMggHjQo" allowfullscreen loading="lazy"></iframe>
+      <a class="news-link" href="https://www.nikkei.com/" target="_blank">日銀、今月会合で利上げ決定へ　政策金利0.75%→1.0%に</a>
+      <p>日本銀行は15〜16日の会合で政策金利を0.75%から1.0%に引き上げる方針を固めた。31年ぶりの高水準で、住宅ローン・預金金利への影響が注目される。</p>
+    </div>
+    <a class="yt-card" href="https://www.youtube.com/watch?v=0zMAMggHjQo" target="_blank">
+      <div class="yt-thumb">
+        <img src="https://img.youtube.com/vi/0zMAMggHjQo/hqdefault.jpg" alt="TBS 日銀利上げ解説">
+        <div class="yt-play"></div>
       </div>
+      <div class="yt-info">
+        <div class="yt-label-tag">▶ 関連動画 / TBS NEWS DIG</div>
+        <p>日銀1%に利上げへ 物価や住宅ローン…暮らしへのメリット・デメリットは？</p>
+      </div>
+    </a>
+    <div class="card">
+      <a class="news-link" href="https://www.nikkei.com/markets/stocks/" target="_blank">日経平均629円高　インテル急伸でAI関連全体に買い</a>
+      <p>東京市場の午前終値で日経平均が629円高。米インテルの株価急伸を受けAI半導体関連銘柄全体に買いが広がった。</p>
     </div>
     <div class="card">
-      <a href="https://www.nikkei.com/markets/stocks/" target="_blank">日経平均629円高　インテル急伸でAI関連全体に買い</div>
-      <p>東京市場の午前終値で日経平均が629円高。米インテルの株価急伸を受けAI半導体関連銘柄全体に買いが広がった。円安の進行も輸出関連株の追い風となっている。</p>
+      <a class="news-link" href="https://www.nikkei.com/" target="_blank">中東エネルギー施設の復旧に7兆円試算　日本企業関連施設にも被害</a>
+      <p>米国とイランの軍事衝突で日本企業が関与する中東の石油・ガス施設でも被害が確認された。復旧費用は7兆円規模との試算でエネルギー価格への影響が懸念される。</p>
     </div>
-    <div class="card">
-      <a href="https://www.nikkei.com/" target="_blank">中東エネルギー施設の復旧に7兆円試算　日本企業関連施設にも被害</a>
-      <p>米国とイランの軍事衝突で日本企業が関与する中東の石油・ガス施設7カ所周辺でも被害が確認された。施設全体の復旧費用は7兆円規模との試算が出ており、エネルギー価格への影響が懸念される。</p>
-    </div>
-    <!-- TBS昼のニュース -->
-    <div class="section-video">
-      <div class="yt-label">▶ 関連動画｜TBS NEWS DIG 6月9日 昼のニュース LIVE</div>
-      <div class="yt-wrap">
-        <iframe src="https://www.youtube.com/embed/ESIpfBacZVs" allowfullscreen loading="lazy"></iframe>
+    <a class="yt-card" href="https://www.youtube.com/watch?v=ESIpfBacZVs" target="_blank">
+      <div class="yt-thumb">
+        <img src="https://img.youtube.com/vi/ESIpfBacZVs/hqdefault.jpg" alt="TBS 昼のニュース">
+        <div class="yt-play"></div>
       </div>
-    </div>
+      <div class="yt-info">
+        <div class="yt-label-tag">▶ 関連動画 / TBS NEWS DIG LIVE</div>
+        <p>【LIVE】昼のニュース 最新情報など（6月9日）</p>
+      </div>
+    </a>
   </div>
 
   <!-- 医療・健康 -->
   <div class="category">
     <div class="category-title cat-health">🏥 医療・健康</div>
     <div class="card">
-      <a href="https://hirotsu.clinic/blog/medical-fee-revision-2026-june-patient-impact/" target="_blank">6月から診療報酬改定が施行　窓口負担・領収書に変化</a>
-      <p>2026年度の診療報酬改定が6月1日から施行された。医療従事者の賃上げ支援やマイナ保険証の利用促進が柱で、患者の窓口負担額や領収書の表示内容が一部変更される。</p>
+      <a class="news-link" href="https://hirotsu.clinic/blog/medical-fee-revision-2026-june-patient-impact/" target="_blank">6月から診療報酬改定が施行　窓口負担・領収書に変化</a>
+      <p>2026年度の診療報酬改定が6月1日から施行。医療従事者の賃上げ支援やマイナ保険証の利用促進が柱で、患者の窓口負担額が一部変更される。</p>
     </div>
     <div class="card">
-      <a href="https://www.jmedj.co.jp/blogs/product/product_27703" target="_blank">改正医療法が成立　病床数削減支援・電子カルテ100%普及へ</a>
-      <p>改正医療法が国会で成立した。地域の実情に応じた病床削減を支援する仕組みが整備されるとともに、電子カルテの普及率100%達成に向けた義務化の工程表も盛り込まれた。</p>
+      <a class="news-link" href="https://www.jmedj.co.jp/blogs/product/product_27703" target="_blank">改正医療法が成立　病床数削減支援・電子カルテ100%普及へ</a>
+      <p>改正医療法が国会で成立。地域の実情に応じた病床削減を支援する仕組みが整備されるとともに、電子カルテの普及率100%達成に向けた義務化の工程表も盛り込まれた。</p>
     </div>
     <div class="card">
-      <a href="https://www.qlifepro.com/news" target="_blank">研究：1日10分の仰臥位エクササイズで立位バランスと敏捷性が向上</a>
-      <p>1日10分間の仰向けエクササイズを継続することで立位バランスと俊敏性が有意に改善することが研究で明らかになった。高齢者の転倒予防への応用が期待される。</p>
+      <a class="news-link" href="https://www.qlifepro.com/news" target="_blank">研究：1日10分の仰臥位エクササイズで立位バランスと敏捷性が向上</a>
+      <p>1日10分間の仰向けエクササイズを継続することで立位バランスと俊敏性が改善することが明らかになった。高齢者の転倒予防への応用が期待される。</p>
     </div>
     <div class="card">
-      <a href="https://news.yahoo.co.jp/articles/c09305551a9a7ff5e8f3e253c32bc153fefa103b" target="_blank">歯の欠損とフレイル重症化に食事の質が関与　新研究が示す</a>
-      <p>歯が欠損している高齢者でフレイルが重症化するリスクに食事の質が大きく関与していることが研究で示された。口腔ケアと食生活改善の両立が介護予防の鍵となる可能性がある。</p>
+      <a class="news-link" href="https://news.yahoo.co.jp/articles/c09305551a9a7ff5e8f3e253c32bc153fefa103b" target="_blank">歯の欠損とフレイル重症化に食事の質が関与　新研究が示す</a>
+      <p>歯が欠損している高齢者でフレイルが重症化するリスクに食事の質が大きく関与していることが研究で示された。口腔ケアと食生活改善の両立が介護予防の鍵となる。</p>
     </div>
   </div>
 
 </div>
-<div class="footer">📰 毎朝6時更新 ・ Powered by Claude<br>各タイトルをタップで元記事へ</div>
+<div class="footer">📰 毎朝6時更新 ・ Powered by Claude<br>サムネイルをタップするとYouTubeで再生</div>
 </body>
 </html>
