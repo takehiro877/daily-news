@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="今日のニュース">
+<link rel="apple-touch-icon" sizes="180x180" href="https://takehiro877.github.io/daily-news/apple-touch-icon.png">
+<title>📰 今日のニュースまとめ</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;background:#f0f2f5;color:#333}
+  .header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:white;padding:24px 16px 20px;text-align:center}
+  .header h1{font-size:18px;font-weight:700;margin-bottom:4px}
+  .header .date{font-size:13px;opacity:.75}
+  .toc{display:flex;gap:8px;padding:12px 16px;background:white;border-bottom:1px solid #eee;overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:10}
+  .toc::-webkit-scrollbar{display:none}
+  .toc a{flex:0 0 auto;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;text-decoration:none;color:white;white-space:nowrap}
+  .toc a.c1{background:#e74c3c}.toc a.c2{background:#2980b9}.toc a.c3{background:#27ae60}.toc a.c4{background:#8e44ad}.toc a.c5{background:#e67e22}
+  .container{max-width:640px;margin:0 auto;padding:16px}
+  .category{margin-bottom:32px;scroll-margin-top:56px}
+  .category-title{font-size:15px;font-weight:800;padding:8px 18px;border-radius:24px;display:inline-flex;align-items:center;gap:6px;margin-bottom:14px;color:white}
+  .cat-domestic{background:#e74c3c}.cat-world{background:#2980b9}.cat-economy{background:#27ae60}.cat-health{background:#8e44ad}.cat-sports{background:#e67e22}
+  .card{background:white;border-radius:12px;padding:16px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+  .card a{color:#1a1a2e;font-size:15px;font-weight:600;text-decoration:none;line-height:1.5;display:block;margin-bottom:8px}
+  .card p{font-size:13px;color:#555;line-height:1.7}
+  .yt-card{background:white;border-radius:12px;overflow:hidden;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+  .yt-meta{padding:10px 14px 8px}
+  .yt-label{font-size:11px;font-weight:700;color:#e00;margin-bottom:3px}
+  .yt-title{font-size:13px;font-weight:600;color:#1a1a2e;line-height:1.4}
+  .yt-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}
+  .yt-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+  .divider{height:1px;background:#e8e8e8;margin:24px 0}
+  .sports-title{font-size:13px;font-weight:800;color:#e67e22;margin:16px 0 8px;display:flex;align-items:center;gap:6px}
+  .sports-title::after{content:'';flex:1;height:1px;background:#e67e22;opacity:.3}
+  .scoreboard{background:white;border-radius:12px;overflow:hidden;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+  .sb-header{background:#1a1a2e;color:white;padding:8px 14px;font-size:12px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+  .sb-link{font-size:11px;color:#7fb3d3;text-decoration:none}
+  .sb-game{display:flex;align-items:center;padding:10px 14px;border-bottom:1px solid #f0f2f5}
+  .sb-game:last-child{border-bottom:none}
+  .sb-teams{flex:1}
+  .sb-team-row{display:flex;align-items:center;gap:8px;margin:2px 0}
+  .sb-team-name{font-size:14px;font-weight:700;width:115px}
+  .sb-score{font-size:20px;font-weight:900;color:#1a1a2e;min-width:28px;text-align:right}
+  .sb-score.win{color:#e74c3c}
+  .sb-status{font-size:11px;color:#999;text-align:center;min-width:60px}
+  .sb-status.sched{background:#f0f2f5;border-radius:8px;padding:4px 6px;font-weight:700;color:#666}
+  .player-card{background:white;border-radius:12px;padding:14px 16px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+  .player-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .player-info{flex:1}
+  .player-name{font-size:16px;font-weight:800;color:#1a1a2e}
+  .player-team{font-size:12px;color:#999;margin-top:1px}
+  .player-last{font-size:12px;font-weight:700;color:#e67e22;background:#fff7f0;padding:2px 8px;border-radius:10px;white-space:nowrap}
+  .stats-row{display:grid;gap:6px;margin-bottom:6px}
+  .stats-row.bat{grid-template-columns:repeat(5,1fr)}
+  .stats-row.pit{grid-template-columns:repeat(4,1fr)}
+  .stat-box{background:#f8f9fa;border-radius:8px;padding:6px 4px;text-align:center}
+  .stat-box .v{font-size:16px;font-weight:800;color:#1a1a2e}
+  .stat-box .v.hi{color:#e74c3c}
+  .stat-box .l{font-size:10px;color:#aaa;margin-top:1px}
+  .player-note{font-size:12px;color:#666;line-height:1.6;border-top:1px solid #f0f2f5;padding-top:8px;margin-top:2px}
+  .koshien-card{background:white;border-radius:12px;overflow:hidden;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+  .koshien-top{background:linear-gradient(135deg,#c0392b,#e74c3c);color:white;padding:14px 16px}
+  .koshien-top h3{font-size:15px;font-weight:800;margin-bottom:4px}
+  .koshien-top p{font-size:12px;opacity:.9}
+  .koshien-body{padding:14px 16px}
+  .timeline{list-style:none}
+  .timeline li{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #f0f2f5;align-items:flex-start}
+  .timeline li:last-child{border-bottom:none}
+  .tl-date{font-size:12px;font-weight:800;color:#e67e22;min-width:70px;padding-top:1px}
+  .tl-text{font-size:13px;color:#333;line-height:1.5}
+  .tl-text strong{font-weight:700;color:#1a1a2e}
+  .countdown-row{display:flex;gap:8px;margin-top:10px}
+  .countdown-box{flex:1;background:#fff7f0;border-radius:10px;padding:10px 6px;text-align:center}
+  .countdown-box .days{font-size:24px;font-weight:900;color:#e74c3c}
+  .countdown-box .label{font-size:10px;color:#999;margin-top:2px}
+  .footer{text-align:center;padding:24px 16px;font-size:12px;color:#aaa}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📰 今日のニュースまとめ</h1>
+  <div class="date">{{DATE}}</div>
+</div>
+<div class="toc">
+  <a class="c1" href="#domestic">🗾 国内</a>
+  <a class="c2" href="#world">🌍 国際</a>
+  <a class="c3" href="#economy">📈 経済</a>
+  <a class="c4" href="#health">🔬 消化器</a>
+  <a class="c5" href="#sports">⚾ スポーツ</a>
+</div>
+<div class="container">
+  <div class="category" id="domestic">
+    <div class="category-title cat-domestic">🗾 国内ニュース</div>
+    {{DOMESTIC_CARDS}}
+    <div class="yt-card"><div class="yt-meta"><div class="yt-label">▶ 関連動画（約2分）</div><div class="yt-title">{{DOMESTIC_YT_TITLE}}</div></div><div class="yt-wrap"><iframe src="https://www.youtube.com/embed/{{DOMESTIC_YT_ID}}?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div></div>
+  </div>
+  <div class="divider"></div>
+  <div class="category" id="world">
+    <div class="category-title cat-world">🌍 国際ニュース</div>
+    {{WORLD_CARDS}}
+    <div class="yt-card"><div class="yt-meta"><div class="yt-label">▶ 関連動画（約2分）</div><div class="yt-title">{{WORLD_YT_TITLE}}</div></div><div class="yt-wrap"><iframe src="https://www.youtube.com/embed/{{WORLD_YT_ID}}?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div></div>
+  </div>
+  <div class="divider"></div>
+  <div class="category" id="economy">
+    <div class="category-title cat-economy">📈 経済ニュース</div>
+    {{ECONOMY_CARDS}}
+    <div class="yt-card"><div class="yt-meta"><div class="yt-label">▶ 関連動画（約2分）</div><div class="yt-title">{{ECONOMY_YT_TITLE}}</div></div><div class="yt-wrap"><iframe src="https://www.youtube.com/embed/{{ECONOMY_YT_ID}}?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div></div>
+  </div>
+  <div class="divider"></div>
+  <div class="category" id="health">
+    <div class="category-title cat-health">🔬 消化器ニュース</div>
+    {{HEALTH_CARDS}}
+    <div class="yt-card"><div class="yt-meta"><div class="yt-label">▶ 関連動画（約3分）</div><div class="yt-title">{{HEALTH_YT_TITLE}}</div></div><div class="yt-wrap"><iframe src="https://www.youtube.com/embed/{{HEALTH_YT_ID}}?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div></div>
+  </div>
+  <div class="divider"></div>
+  <div class="category" id="sports">
+    <div class="category-title cat-sports">⚾ スポーツ</div>
+    <div class="sports-title">🏟 プロ野球　{{NPB_DATE}}結果</div>
+    <div class="scoreboard">
+      <div class="sb-header"><span>セ・パ交流戦</span><a class="sb-link" href="https://npb.jp/games/2026/schedule_06_detail.html" target="_blank">NPB公式 →</a></div>
+      {{NPB_SCORES}}
+    </div>
+    <div class="yt-card"><div class="yt-meta"><div class="yt-label">▶ プロ野球 ハイライト（約2分）</div><div class="yt-title">{{NPB_YT_TITLE}}</div></div><div class="yt-wrap"><iframe src="https://www.youtube.com/embed/{{NPB_YT_ID}}?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div></div>
+    <div class="sports-title">🇺🇸 メジャーリーグ　日本人選手</div>
+    {{MLB_PLAYERS}}
+    <div class="yt-card"><div class="yt-meta"><div class="yt-label">▶ MLB ハイライト（約2分）</div><div class="yt-title">{{MLB_YT_TITLE}}</div></div><div class="yt-wrap"><iframe src="https://www.youtube.com/embed/{{MLB_YT_ID}}?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div></div>
+    <div class="sports-title">🏟 高校野球　東京地方大会2026</div>
+    <div class="koshien-card">
+      <div class="koshien-top"><h3>🗼 東京都大会スケジュール</h3><p>第108回全国高校野球選手権　東東京・西東京大会</p></div>
+      <div class="koshien-body">
+        <ul class="timeline">
+          <li><div class="tl-date">6月14日</div><div class="tl-text"><strong>組み合わせ抽選会</strong><br>東東京・西東京の出場校と対戦相手が決定。</div></li>
+          <li><div class="tl-date">7月4日〜</div><div class="tl-text"><strong>西東京大会　開幕</strong><br>早実・日大三・東海大菅生など。決勝7月26日。</div></li>
+          <li><div class="tl-date">7月5日〜</div><div class="tl-text"><strong>東東京大会　開幕</strong><br>帝京・関東一・二松学舎大附など。決勝7月27日。</div></li>
+          <li><div class="tl-date">8月5日〜</div><div class="tl-text"><strong>第108回甲子園　本大会</strong><br>8月22日決勝。</div></li>
+        </ul>
+        <div class="countdown-row">
+          <div class="countdown-box"><div class="days">{{CD1}}</div><div class="label">抽選まで</div></div>
+          <div class="countdown-box"><div class="days">{{CD2}}</div><div class="label">西東京開幕</div></div>
+          <div class="countdown-box"><div class="days">{{CD3}}</div><div class="label">甲子園まで</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">📰 毎朝6時更新 ・ Powered by Claude<br>各タイトルをタップで元記事へ</div>
+</body>
+</html>
