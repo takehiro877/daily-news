@@ -1,406 +1,241 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>📰 今日のニュースまとめ - 2026年06月09日</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
-      background: #f0f4f8;
-      color: #2d3748;
-      line-height: 1.7;
-      font-size: 15px;
-    }
-    header {
-      background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
-      color: white;
-      padding: 24px 16px 20px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-    }
-    header h1 {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      margin-bottom: 6px;
-    }
-    header p {
-      font-size: 12px;
-      opacity: 0.85;
-    }
-    main { max-width: 720px; margin: 0 auto; padding: 20px 12px 40px; }
-    .category {
-      margin-bottom: 32px;
-    }
-    .category-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 17px;
-      font-weight: 700;
-      padding: 10px 16px;
-      border-radius: 12px 12px 0 0;
-      margin-bottom: 0;
-      color: white;
-      letter-spacing: 0.03em;
-    }
-    .cat-domestic .category-header { background: linear-gradient(90deg, #2d6a4f, #40916c); }
-    .cat-world    .category-header { background: linear-gradient(90deg, #023e8a, #0077b6); }
-    .cat-economy  .category-header { background: linear-gradient(90deg, #7b2d00, #c45e0a); }
-    .cat-health   .category-header { background: linear-gradient(90deg, #6d3fa0, #9b5de5); }
-
-    .cards-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-    .card {
-      background: #ffffff;
-      border-left: 4px solid;
-      padding: 16px 16px 14px;
-      border-bottom: 1px solid #e2e8f0;
-    }
-    .card:last-child {
-      border-radius: 0 0 12px 12px;
-      border-bottom: none;
-    }
-    .cat-domestic .card { border-color: #40916c; }
-    .cat-world    .card { border-color: #0077b6; }
-    .cat-economy  .card { border-color: #c45e0a; }
-    .cat-health   .card { border-color: #9b5de5; }
-
-    .card-title {
-      font-size: 14.5px;
-      font-weight: 700;
-      margin-bottom: 7px;
-      line-height: 1.5;
-    }
-    .card-title a {
-      color: #1a202c;
-      text-decoration: none;
-    }
-    .card-title a:hover { text-decoration: underline; }
-    .cat-domestic .card-title a:hover { color: #2d6a4f; }
-    .cat-world    .card-title a:hover { color: #023e8a; }
-    .cat-economy  .card-title a:hover { color: #7b2d00; }
-    .cat-health   .card-title a:hover { color: #6d3fa0; }
-
-    .card-summary {
-      font-size: 13.5px;
-      color: #4a5568;
-      line-height: 1.75;
-    }
-    .source-badge {
-      display: inline-block;
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 20px;
-      margin-top: 8px;
-      color: white;
-      font-weight: 600;
-    }
-    .cat-domestic .source-badge { background: #40916c; }
-    .cat-world    .source-badge { background: #0077b6; }
-    .cat-economy  .source-badge { background: #c45e0a; }
-    .cat-health   .source-badge { background: #9b5de5; }
-
-    footer {
-      text-align: center;
-      padding: 20px 16px;
-      font-size: 11.5px;
-      color: #718096;
-    }
-    footer a { color: #4a90d9; text-decoration: none; }
-
-    @media (min-width: 600px) {
-      body { font-size: 16px; }
-      header h1 { font-size: 22px; }
-      .card { padding: 18px 20px 16px; }
-      .card-title { font-size: 15.5px; }
-      .card-summary { font-size: 14.5px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="今日のニュース">
+<link rel="apple-touch-icon" sizes="180x180" href="https://takehiro877.github.io/daily-news/apple-touch-icon.png">
+<title>📰 今日のニュースまとめ</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;background:#f0f2f5;color:#333}
+  .header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:white;padding:24px 16px 20px;text-align:center}
+  .header h1{font-size:18px;font-weight:700;margin-bottom:4px}
+  .header .date{font-size:13px;opacity:.75}
+  .toc{display:flex;gap:8px;padding:12px 16px;background:white;border-bottom:1px solid #eee;overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:10}
+  .toc::-webkit-scrollbar{display:none}
+  .toc a{flex:0 0 auto;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;text-decoration:none;color:white;white-space:nowrap}
+  .toc a.c1{background:#e74c3c}.toc a.c2{background:#2980b9}.toc a.c3{background:#27ae60}.toc a.c4{background:#8e44ad}.toc a.c5{background:#e67e22}
+  .container{max-width:640px;margin:0 auto;padding:16px}
+  .category{margin-bottom:32px;scroll-margin-top:56px}
+  .category-title{font-size:15px;font-weight:800;padding:8px 18px;border-radius:24px;display:inline-flex;align-items:center;gap:6px;margin-bottom:14px;color:white}
+  .cat-domestic{background:#e74c3c}.cat-world{background:#2980b9}.cat-economy{background:#27ae60}.cat-health{background:#8e44ad}.cat-sports{background:#e67e22}
+  .card{background:white;border-radius:12px;padding:16px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+  .card a{color:#1a1a2e;font-size:15px;font-weight:600;text-decoration:none;line-height:1.5;display:block;margin-bottom:8px}
+  .card p{font-size:13px;color:#555;line-height:1.7}
+  .yt-card{background:white;border-radius:12px;overflow:hidden;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+  .yt-meta{padding:10px 14px 8px}
+  .yt-label{font-size:11px;font-weight:700;color:#e00;margin-bottom:3px}
+  .yt-title{font-size:13px;font-weight:600;color:#1a1a2e;line-height:1.4}
+  .yt-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}
+  .yt-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+  .divider{height:1px;background:#e8e8e8;margin:24px 0}
+  .sports-title{font-size:13px;font-weight:800;color:#e67e22;margin:16px 0 8px;display:flex;align-items:center;gap:6px}
+  .sports-title::after{content:'';flex:1;height:1px;background:#e67e22;opacity:.3}
+  .scoreboard{background:white;border-radius:12px;overflow:hidden;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+  .sb-header{background:#1a1a2e;color:white;padding:8px 14px;font-size:12px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+  .sb-link{font-size:11px;color:#7fb3d3;text-decoration:none}
+  .sb-game{display:flex;align-items:center;padding:10px 14px;border-bottom:1px solid #f0f2f5}
+  .sb-game:last-child{border-bottom:none}
+  .sb-teams{flex:1}
+  .sb-team-row{display:flex;align-items:center;gap:8px;margin:2px 0}
+  .sb-team-name{font-size:14px;font-weight:700;width:115px}
+  .sb-score{font-size:20px;font-weight:900;color:#1a1a2e;min-width:28px;text-align:right}
+  .sb-score.win{color:#e74c3c}
+  .sb-status{font-size:11px;color:#999;text-align:center;min-width:60px}
+  .sb-status.sched{background:#f0f2f5;border-radius:8px;padding:4px 6px;font-weight:700;color:#666}
+  .player-card{background:white;border-radius:12px;padding:14px 16px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+  .player-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .player-info{flex:1}
+  .player-name{font-size:16px;font-weight:800;color:#1a1a2e}
+  .player-team{font-size:12px;color:#999;margin-top:1px}
+  .player-last{font-size:12px;font-weight:700;color:#e67e22;background:#fff7f0;padding:2px 8px;border-radius:10px;white-space:nowrap}
+  .stats-row{display:grid;gap:6px;margin-bottom:6px}
+  .stats-row.bat{grid-template-columns:repeat(5,1fr)}
+  .stats-row.pit{grid-template-columns:repeat(4,1fr)}
+  .stat-box{background:#f8f9fa;border-radius:8px;padding:6px 4px;text-align:center}
+  .stat-box .v{font-size:16px;font-weight:800;color:#1a1a2e}
+  .stat-box .v.hi{color:#e74c3c}
+  .stat-box .l{font-size:10px;color:#aaa;margin-top:1px}
+  .player-note{font-size:12px;color:#666;line-height:1.6;border-top:1px solid #f0f2f5;padding-top:8px;margin-top:2px}
+  .koshien-card{background:white;border-radius:12px;overflow:hidden;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+  .koshien-top{background:linear-gradient(135deg,#c0392b,#e74c3c);color:white;padding:14px 16px}
+  .koshien-top h3{font-size:15px;font-weight:800;margin-bottom:4px}
+  .koshien-top p{font-size:12px;opacity:.9}
+  .koshien-body{padding:14px 16px}
+  .timeline{list-style:none}
+  .timeline li{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #f0f2f5;align-items:flex-start}
+  .timeline li:last-child{border-bottom:none}
+  .tl-date{font-size:12px;font-weight:800;color:#e67e22;min-width:70px;padding-top:1px}
+  .tl-text{font-size:13px;color:#333;line-height:1.5}
+  .tl-text strong{font-weight:700;color:#1a1a2e}
+  .countdown-row{display:flex;gap:8px;margin-top:10px}
+  .countdown-box{flex:1;background:#fff7f0;border-radius:10px;padding:10px 6px;text-align:center}
+  .countdown-box .days{font-size:24px;font-weight:900;color:#e74c3c}
+  .countdown-box .label{font-size:10px;color:#999;margin-top:2px}
+  .footer{text-align:center;padding:24px 16px;font-size:12px;color:#aaa}
+</style>
 </head>
 <body>
-
-<header>
+<div class="header">
   <h1>📰 今日のニュースまとめ</h1>
-  <p>2026年06月09日（火）&nbsp;|&nbsp;更新：21:06 JST</p>
-</header>
+  <div class="date">2026年6月10日（水）更新</div>
+</div>
+<div class="toc">
+  <a class="c1" href="#domestic">🗾 国内</a>
+  <a class="c2" href="#world">🌍 国際</a>
+  <a class="c3" href="#economy">📈 経済</a>
+  <a class="c4" href="#health">🔬 消化器</a>
+  <a class="c5" href="#sports">⚾ スポーツ</a>
+</div>
+<div class="container">
 
-<main>
-
-  <!-- ============ 国内ニュース ============ -->
-  <section class="category cat-domestic">
-    <div class="category-header">🗾 国内ニュース</div>
-    <div class="cards-wrap">
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://www.youtube.com/watch?v=Y9JBNK6Le8I" target="_blank" rel="noopener">
-            サッカーW杯2026・日本代表が米ナッシュビルでキャンプ開始
-          </a>
-        </p>
-        <p class="card-summary">
-          FIFAワールドカップ2026に向けた日本代表が、キャンプ地に選んだ米国テネシー州ナッシュビルで初練習を行いました。本大会は米国・カナダ・メキシコの3カ国共催で開催され、日本は悲願のベスト8以上を目指して最終調整に臨んでいます。
-        </p>
-        <span class="source-badge">日テレNEWS</span>
-      </div>
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://news.web.nhk/newsweb/genre/politics" target="_blank" rel="noopener">
-            高市内閣の支持率60%・NHK世論調査
-          </a>
-        </p>
-        <p class="card-summary">
-          NHKが実施した最新の世論調査で、高市内閣の支持率は60%、不支持率は26%となりました。自民党の支持率は35.7%で、支持政党なしが34.7%と拮抗しています。内閣発足以来、一定の高水準を維持している形です。
-        </p>
-        <span class="source-badge">NHKニュース</span>
-      </div>
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://news.web.nhk/newsweb" target="_blank" rel="noopener">
-            宇都宮市内でクマを麻酔銃で捕獲、市街地への出没が相次ぐ
-          </a>
-        </p>
-        <p class="card-summary">
-          栃木県宇都宮市内でクマが出没し、警察と猟友会が麻酔銃を使用して捕獲しました。福島県や岩手県でもクマの出没・被害が相次いで報告されており、当局は市街地へのクマ接近に警戒を強めるよう住民に呼びかけています。
-        </p>
-        <span class="source-badge">NHKニュース</span>
-      </div>
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://www.youtube.com/watch?v=YKYMJfh9HrU" target="_blank" rel="noopener">
-            参院総務委員会で一般質疑、地方行政・通信政策を議論
-          </a>
-        </p>
-        <p class="card-summary">
-          参議院総務委員会の一般質疑が6月9日に開催され、地方行政や通信・放送政策などに関する議論が行われました。国会は今月末の会期末に向け各委員会での審議が活発化しており、複数の重要法案の審議も続いています。
-        </p>
-        <span class="source-badge">参院インターネット審議中継</span>
-      </div>
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://kabushiki.jp/news/753741" target="_blank" rel="noopener">
-            日経平均が1,392円高の65,416円、前日比+2.17%の大幅上昇
-          </a>
-        </p>
-        <p class="card-summary">
-          東京株式市場の日経平均株価は前日比1,392円高と大幅に上昇し、65,416円で引けました。前日夜のNY市場が上昇した流れを引き継ぎ、AI・半導体関連銘柄を中心に幅広い銘柄に買いが入りました。
-        </p>
-        <span class="source-badge">株式新聞Web</span>
-      </div>
-
+  <div class="category" id="domestic">
+    <div class="category-title cat-domestic">🗾 国内ニュース</div>
+    <div class="card"><a href="https://news.web.nhk/newsweb" target="_blank">鹿児島・十島村の避難指示すべて解除　地震活動が落ち着く</a><p>鹿児島県十島村で続いていた避難指示がすべて解除された。地震活動が落ち着いたためで、住民は自宅への帰宅が可能となった。</p></div>
+    <div class="card"><a href="https://news.web.nhk/newsweb" target="_blank">沖縄・奄美 11日にかけて大雨警戒　梅雨末期の警報級降水のおそれ</a><p>気象庁は沖縄・奄美地方に大雨警報を発表。梅雨末期特有の集中豪雨が予想されており、土砂災害や河川の増水に厳重な警戒が必要。</p></div>
+    <div class="card"><a href="https://www.nikkan.co.jp/" target="_blank">豊田通商、アフリカ・インド・南米の売上高を4.5兆円に拡大へ</a><p>豊田通商は2030年代前半までにアフリカ・インド・南米での売上高を現在の約2倍となる4.5兆円に拡大する計画を発表。新興国市場でのビジネス拡大を加速させる。</p></div>
+    <div class="card"><a href="https://news.web.nhk/newsweb" target="_blank">中小企業の賃上げ率4.29%　日本商工会議所調査で判明</a><p>日本商工会議所の調査によると、中小企業の今年度の賃上げ率は平均4.29%となった。人手不足を背景に賃上げの勢いが続いているが、中小企業の負担増加も懸念される。</p></div>
+    <div class="yt-card">
+      <div class="yt-meta"><div class="yt-label">▶ 関連動画 / TBS NEWS DIG（約2分）</div><div class="yt-title">【朝のニュース】最新情報など（6月10日）</div></div>
+      <div class="yt-wrap"><iframe src="https://www.youtube.com/embed/Ne4kVN8ErpY?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
     </div>
-  </section>
+  </div>
+  <div class="divider"></div>
 
-  <!-- ============ 国際ニュース ============ -->
-  <section class="category cat-world">
-    <div class="category-header">🌍 国際ニュース</div>
-    <div class="cards-wrap">
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://www.nikkei.com/article/DGXZQOGM0828Q0Y6A600C2000000/" target="_blank" rel="noopener">
-            フィリピン南部でM7.8の大地震、死者32人超・1.5m超の津波を観測
-          </a>
-        </p>
-        <p class="card-summary">
-          6月8日午前、フィリピン南部ミンダナオ島沖でマグニチュード7.8の大地震が発生し、死者は32人を超えました。震源付近では1.5メートルを超える津波も観測され、日本の沿岸部でも津波注意報が発令されました。学校や住宅への被害も相次いでいます。
-        </p>
-        <span class="source-badge">日本経済新聞</span>
-      </div>
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://news.infoseek.co.jp/g/world/" target="_blank" rel="noopener">
-            バルセロナ・サグラダ・ファミリアの「イエスの塔」が完成、教皇がミサ主宰へ
-          </a>
-        </p>
-        <p class="card-summary">
-          スペイン・バルセロナの世界的建築物「サグラダ・ファミリア」のメインタワー「イエスの塔」がついに完成しました。建築家アントニ・ガウディの没後100周年にあたる6月10日に、ローマ教皇が記念ミサを執り行う予定で、世界中から注目が集まっています。
-        </p>
-        <span class="source-badge">Infoseekニュース</span>
-      </div>
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtcGhHZ0pLVUNnQVAB?hl=ja&gl=JP&ceid=JP%3Aja" target="_blank" rel="noopener">
-            アルゼンチンがCPTPP（環太平洋パートナーシップ協定）への加入申請
-          </a>
-        </p>
-        <p class="card-summary">
-          アルゼンチンが環太平洋パートナーシップに関する包括的及び先進的な協定（CPTPP）への加入を正式に申請しました。ミレイ政権が推進する自由貿易路線の一環で、加入が実現すれば協定の経済的影響力がさらに拡大することになります。
-        </p>
-        <span class="source-badge">Googleニュース</span>
-      </div>
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://www.web.nhk/tv/an/kokusaihoudou/pl/series-tep-8M689W8RVX" target="_blank" rel="noopener">
-            日韓世論調査で「日韓関係は良好」が過去最高水準に
-          </a>
-        </p>
-        <p class="card-summary">
-          日韓両国で実施された世論調査で、「日韓関係は良好」と評価する割合が過去最高水準に達したことが明らかになりました。両国の経済・文化交流の活発化が背景にあるとみられ、外交関係の改善を示す指標として注目されています。
-        </p>
-        <span class="source-badge">NHK国際報道</span>
-      </div>
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://news.infoseek.co.jp/g/world/" target="_blank" rel="noopener">
-            ボリビアでデモ隊と警察が衝突、大統領が取締り強化法案に署名
-          </a>
-        </p>
-        <p class="card-summary">
-          ボリビアで反政府デモ隊と警察の衝突が発生し、複数の負傷者が出ました。アルセ大統領はデモへの取締りを強化する法案に署名しており、国内政治情勢の緊迫化が続いています。経済悪化への不満が抗議活動の背景にあるとされています。
-        </p>
-        <span class="source-badge">Infoseekニュース</span>
-      </div>
-
+  <div class="category" id="world">
+    <div class="category-title cat-world">🌍 国際ニュース</div>
+    <div class="card"><a href="https://news.infoseek.co.jp/g/world/" target="_blank">フィリピン南部M8.2地震　死者・行方不明者の捜索続く</a><p>6月8日に発生したフィリピン・ミンダナオ島付近のM8.2地震で、現地では引き続き行方不明者の捜索が続いている。日本の津波注意報はすべて解除された。</p></div>
+    <div class="yt-card">
+      <div class="yt-meta"><div class="yt-label">▶ 関連動画 / 気象庁（約2分）</div><div class="yt-title">津波注意報すべて解除　フィリピンM8.2地震　気象庁発表</div></div>
+      <div class="yt-wrap"><iframe src="https://www.youtube.com/embed/xNu64mGQ4eE?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
     </div>
-  </section>
+    <div class="card"><a href="https://www.web.nhk/tv/an/kokusaihoudou/pl/series-tep-8M689W8RVX" target="_blank">日韓世論調査「日韓関係は良好」が過去最高水準に</a><p>日韓両国の世論調査で「日韓関係は良好」と回答した割合が過去最高水準に達した。文化交流や経済連携の深まりが背景にあるとみられる。</p></div>
+    <div class="card"><a href="https://news.infoseek.co.jp/g/world/" target="_blank">G7サミット　首脳宣言の取りまとめ難航　調整続く</a><p>現在開催中のG7サミットで首脳宣言の取りまとめが難航している。加盟国間の貿易・安全保障をめぐる対立が背景にあり、引き続き協議が続けられる。</p></div>
+  </div>
+  <div class="divider"></div>
 
-  <!-- ============ 経済ニュース ============ -->
-  <section class="category cat-economy">
-    <div class="category-header">📈 経済ニュース</div>
-    <div class="cards-wrap">
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://kabutan.jp/news/marketnews/?b=n202606090122" target="_blank" rel="noopener">
-            日経平均65,416円・前日比+1,392円、AI・半導体株が相場を牽引
-          </a>
-        </p>
-        <p class="card-summary">
-          6月9日の東京株式市場では、AI・半導体関連銘柄への強い買いを背景に日経平均が大幅高となりました。前日のNYダウが堅調だった流れを受け、幅広いセクターで買いが広がり、市場では7万円台を視野に入れるとの声もあがっています。
-        </p>
-        <span class="source-badge">株探ニュース</span>
-      </div>
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://www.nomura.co.jp/wealthstyle/article/0607/" target="_blank" rel="noopener">
-            野村証券が日経平均の2026年末予想を60,000円に上方修正
-          </a>
-        </p>
-        <p class="card-summary">
-          野村証券のストラテジストが、日経平均株価の2026年末見通しを60,000円に上方修正しました。先の総選挙の結果と主要企業の決算内容を反映したもので、上振れシナリオでは7万円台突破の可能性も示されています。
-        </p>
-        <span class="source-badge">野村ウェルスタイル</span>
-      </div>
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://diamond.jp/zai/articles/-/1068385" target="_blank" rel="noopener">
-            来週の日経平均予想レンジ64,000〜69,000円、「17の戦略分野」関連株に注目
-          </a>
-        </p>
-        <p class="card-summary">
-          来週（6/8〜6/12）の日経平均株価の予想レンジは64,000〜69,000円とされています。AI・半導体以外への資金分散が進む中、高市首相が掲げる「17の戦略分野」関連銘柄への注目が高まっています。
-        </p>
-        <span class="source-badge">ダイヤモンドZAi</span>
-      </div>
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://www.ebc.com/jp/forex/298829.html" target="_blank" rel="noopener">
-            日銀が緩和的金融環境を維持、円安継続で海外投資家の買いが流入
-          </a>
-        </p>
-        <p class="card-summary">
-          日本銀行が急激な金融引き締めを避け、緩和的な金融環境を維持していることが日本株上昇の支援材料となっています。円安の継続も輸出関連企業の業績押し上げ要因として働いており、海外投資家からの資金流入も続いています。
-        </p>
-        <span class="source-badge">EBC Financial Group</span>
-      </div>
-
+  <div class="category" id="economy">
+    <div class="category-title cat-economy">📈 経済ニュース</div>
+    <div class="card"><a href="https://www.nikkei.com/" target="_blank">日銀、今月会合で利上げ決定へ　政策金利0.75%→1.0%に</a><p>日本銀行は15〜16日の会合で政策金利を0.75%から1.0%に引き上げる方針を固めた。31年ぶりの高水準で、住宅ローン・預金金利への影響が注目される。</p></div>
+    <div class="yt-card">
+      <div class="yt-meta"><div class="yt-label">▶ 関連動画 / TBS NEWS DIG（約2分）</div><div class="yt-title">「利上げの是非しっかり議論」日銀・植田総裁が講演</div></div>
+      <div class="yt-wrap"><iframe src="https://www.youtube.com/embed/vUMFLi53ud0?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
     </div>
-  </section>
+    <div class="card"><a href="https://www.nikkei.com/markets/stocks/" target="_blank">東京株式市場　続伸傾向　日経平均6万5000円台を維持</a><p>東京株式市場は続伸傾向が続いており、日経平均株価は6万5000円台を維持。AI関連・半導体銘柄が相場をけん引している。</p></div>
+    <div class="card"><a href="https://www.nikkei.com/" target="_blank">大阪ガスと日本IBM、AIを軸とした次世代IT変革で共創に合意</a><p>大阪ガスと日本IBMがAI技術を中心とした次世代IT変革に向けて共創することで合意した。エネルギー業界のデジタル化加速が期待される。</p></div>
+  </div>
+  <div class="divider"></div>
 
-  <!-- ============ 医療・健康 ============ -->
-  <section class="category cat-health">
-    <div class="category-header">🏥 医療・健康</div>
-    <div class="cards-wrap">
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://news.yahoo.co.jp/articles/c09305551a9a7ff5e8f3e253c32bc153fefa103b" target="_blank" rel="noopener">
-            2026年診療報酬改定が6月1日施行、30年ぶりの高水準プラス3.09%
-          </a>
-        </p>
-        <p class="card-summary">
-          2026年度の診療報酬改定が6月1日から施行され、診療報酬本体は3.09%のプラス改定と1996年以来30年ぶりの高水準となりました。医療従事者の賃上げ支援が主な目的で、患者の窓口負担は再診料が1点引き上げられるなど若干の増加となります。
-        </p>
-        <span class="source-badge">Yahoo!ニュース</span>
-      </div>
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://hirotsu.clinic/blog/medical-fee-revision-2026-june-patient-impact/" target="_blank" rel="noopener">
-            マイナ保険証の活用で医療DX加算が変わる、電子カルテ連携も本格化
-          </a>
-        </p>
-        <p class="card-summary">
-          診療報酬改定に伴い、マイナ保険証の提示の有無によって医療DX関連加算の扱いが変わるケースが生じています。電子処方箋・電子カルテ共有サービスの活用状況に応じた評価体系が新たに整備され、医療DXの推進が加速しています。
-        </p>
-        <span class="source-badge">ひろつ内科クリニック</span>
-      </div>
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://biobankjp.org/15661" target="_blank" rel="noopener">
-            「バイオバンク・ジャパン見学会」6月20日開催、未来の医療研究を公開
-          </a>
-        </p>
-        <p class="card-summary">
-          東京大学医科学研究所のバイオバンク・ジャパンが6月20日に一般向け見学会を開催します。6月6日を「バイオバンクの日」として記念し、個人の遺伝情報や生体試料を活用した次世代医療研究の取り組みを広く社会に紹介する予定です。
-        </p>
-        <span class="source-badge">バイオバンク・ジャパン</span>
-      </div>
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://www.qlifepro.com/news" target="_blank" rel="noopener">
-            アルツハイマー病の血液検査が医療費削減に貢献、欠損歯とフレイルの関連も判明
-          </a>
-        </p>
-        <p class="card-summary">
-          最新の医療研究として、アルツハイマー病の血液検査が早期診断を可能にし、医療費の大幅削減効果があるとの報告が出ています。また、歯が欠損した状態とフレイル（虚弱）の重症化に強い関連性があることも研究で示されており、口腔ケアの重要性が改めて注目されています。
-        </p>
-        <span class="source-badge">QLifePro</span>
-      </div>
-
-      <div class="card">
-        <p class="card-title">
-          <a href="https://www.mhlw.go.jp/stf/newpage_67729.html" target="_blank" rel="noopener">
-            厚労省が改正医療法を成立、病床数削減支援と電子カルテ100%化を目指す
-          </a>
-        </p>
-        <p class="card-summary">
-          厚生労働省が進める改正医療法が成立し、病床数の適正化支援と電子カルテの普及率100%達成に向けた取り組みが本格化します。医療機関の経営効率化とデジタル化を両立させることで、持続可能な医療提供体制の構築を目指しています。
-        </p>
-        <span class="source-badge">厚生労働省</span>
-      </div>
-
+  <div class="category" id="health">
+    <div class="category-title cat-health">🔬 消化器ニュース</div>
+    <div class="card"><a href="https://www.carenet.com/report/asco/2026/cg005732_003.html" target="_blank">ASCO2026速報｜消化器がん治療の最新エビデンスが相次ぎ発表</a><p>米国臨床腫瘍学会（ASCO2026）で消化器がんに関する最新研究が発表された。胃がん・大腸がん・膵臓がんにおける新規治療薬の有効性データが注目を集めた。</p></div>
+    <div class="card"><a href="https://www.ncc.go.jp/jp/ncch/clinic/gastrointestinal_endoscopy/ESD/index.html" target="_blank">AI搭載内視鏡で早期胃がん・大腸がんの診断精度が向上　国立がん研究センター報告</a><p>NBI（狭帯域光観察）とAI診断支援を組み合わせた内視鏡システムの成果が報告された。ミリ単位の深達度診断が可能となり、ESDの適応判断精度が大幅に向上した。</p></div>
+    <div class="card"><a href="https://www.jges.net/content/guideline" target="_blank">日本消化器内視鏡学会　JDDW2026の開催概要を発表</a><p>日本消化器関連学会週間（JDDW2026）の開催概要が発表。消化器病・内視鏡・肝臓・外科・がん検診の5学会が合同開催予定。最新の臨床研究セッションが注目される。</p></div>
+    <div class="card"><a href="https://ganjoho.jp/public/dia_tre/treatment/endoscopy.html" target="_blank">大腸がん検診の受診率向上へ　便潜血検査の無償化拡大</a><p>2026年度改定で大腸がん検診の自己負担軽減措置が拡大。早期発見・早期治療につながる検診受診率の向上が期待される。</p></div>
+    <div class="yt-card">
+      <div class="yt-meta"><div class="yt-label">▶ 関連動画 / 山鹿中央病院（約3分）</div><div class="yt-title">【520倍まで拡大！】超拡大内視鏡による検査・治療の最前線</div></div>
+      <div class="yt-wrap"><iframe src="https://www.youtube.com/embed/BV9RM9a-8ZE?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
     </div>
-  </section>
+  </div>
+  <div class="divider"></div>
 
-</main>
+  <div class="category" id="sports">
+    <div class="category-title cat-sports">⚾ スポーツ</div>
 
-<footer>
-  <p>データ収集：2026年06月09日 21:06 JST</p>
-  <p style="margin-top:6px;">自動生成ニュースまとめ | <a href="https://takehiro877.github.io/daily-news/">daily-news</a></p>
-</footer>
+    <!-- NPB 6/9結果 -->
+    <div class="sports-title">🏟 プロ野球　6月9日（火）結果</div>
+    <div class="scoreboard">
+      <div class="sb-header"><span>セ・パ交流戦　全6試合終了</span><a class="sb-link" href="https://npb.jp/games/2026/schedule_06_detail.html" target="_blank">NPB公式 →</a></div>
+      <div class="sb-game"><div class="sb-teams"><div class="sb-team-row"><span class="sb-team-name">ソフトバンク</span><span class="sb-score win">10</span></div><div class="sb-team-row"><span class="sb-team-name">阪神</span><span class="sb-score">4</span></div></div><div class="sb-status">終了<br><span style="font-size:10px">みずほPayPay</span></div></div>
+      <div class="sb-game"><div class="sb-teams"><div class="sb-team-row"><span class="sb-team-name">巨人</span><span class="sb-score win">8</span></div><div class="sb-team-row"><span class="sb-team-name">楽天</span><span class="sb-score">2</span></div></div><div class="sb-status">終了<br><span style="font-size:10px">楽天モバイル</span></div></div>
+      <div class="sb-game"><div class="sb-teams"><div class="sb-team-row"><span class="sb-team-name">日本ハム</span><span class="sb-score win">4</span></div><div class="sb-team-row"><span class="sb-team-name">DeNA</span><span class="sb-score">1</span></div></div><div class="sb-status">終了<br><span style="font-size:10px">エスコンF</span></div></div>
+      <div class="sb-game"><div class="sb-teams"><div class="sb-team-row"><span class="sb-team-name">西武</span><span class="sb-score win">4</span></div><div class="sb-team-row"><span class="sb-team-name">広島</span><span class="sb-score">3</span></div></div><div class="sb-status">終了<br><span style="font-size:10px">ベルーナ</span></div></div>
+      <div class="sb-game"><div class="sb-teams"><div class="sb-team-row"><span class="sb-team-name">ロッテ</span><span class="sb-score win">3</span></div><div class="sb-team-row"><span class="sb-team-name">中日</span><span class="sb-score">1</span></div></div><div class="sb-status">終了<br><span style="font-size:10px">ZOZOマリン</span></div></div>
+      <div class="sb-game"><div class="sb-teams"><div class="sb-team-row"><span class="sb-team-name">オリックス</span><span class="sb-score win">4</span></div><div class="sb-team-row"><span class="sb-team-name">ヤクルト</span><span class="sb-score">3</span></div></div><div class="sb-status">終了<br><span style="font-size:10px">京セラD大阪</span></div></div>
+    </div>
+    <div class="yt-card">
+      <div class="yt-meta"><div class="yt-label">▶ 関連動画 / NPB（約2分）</div><div class="yt-title">ソフトバンク10-4阪神 試合ハイライト（6月9日）</div></div>
+      <div class="yt-wrap"><iframe src="https://www.youtube.com/embed/5vB3KaXhZOI?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+    </div>
 
+    <!-- MLB -->
+    <div class="sports-title">🇺🇸 メジャーリーグ　日本人選手</div>
+    <div class="player-card">
+      <div class="player-header">
+        <div class="player-info"><div class="player-name">大谷 翔平</div><div class="player-team">ロサンゼルス・ドジャース ／ DH・投手</div></div>
+        <div class="player-last">6/10 1安打2打点</div>
+      </div>
+      <div style="font-size:11px;color:#aaa;margin-bottom:6px;font-weight:700">【打者成績】2026シーズン</div>
+      <div class="stats-row bat">
+        <div class="stat-box"><div class="v hi">.305</div><div class="l">打率</div></div>
+        <div class="stat-box"><div class="v hi">13</div><div class="l">本塁打</div></div>
+        <div class="stat-box"><div class="v">18</div><div class="l">打点</div></div>
+        <div class="stat-box"><div class="v">.400</div><div class="l">出塁率</div></div>
+        <div class="stat-box"><div class="v hi">.940</div><div class="l">OPS</div></div>
+      </div>
+      <div style="font-size:11px;color:#aaa;margin:8px 0 6px;font-weight:700">【投手成績】2026シーズン</div>
+      <div class="stats-row pit">
+        <div class="stat-box"><div class="v hi">6</div><div class="l">勝利</div></div>
+        <div class="stat-box"><div class="v">1</div><div class="l">敗戦</div></div>
+        <div class="stat-box"><div class="v">61.0</div><div class="l">投球回</div></div>
+        <div class="stat-box"><div class="v">67</div><div class="l">奪三振</div></div>
+      </div>
+      <div class="player-note">6/10 ドジャース12-3パイレーツ。4打数1安打2打点1四球と勝利に貢献。6/9にはパイレーツ戦で12号・13号の2本塁打を放ち絶好調。月間打率.480でリーグトップ。</div>
+    </div>
+    <div class="player-card">
+      <div class="player-header">
+        <div class="player-info"><div class="player-name">山本 由伸</div><div class="player-team">ロサンゼルス・ドジャース ／ 先発投手</div></div>
+        <div class="player-last">6/7 8回 6勝目</div>
+      </div>
+      <div class="stats-row pit">
+        <div class="stat-box"><div class="v hi">6</div><div class="l">勝利</div></div>
+        <div class="stat-box"><div class="v">2</div><div class="l">敗戦</div></div>
+        <div class="stat-box"><div class="v">77.1</div><div class="l">投球回</div></div>
+        <div class="stat-box"><div class="v">73</div><div class="l">奪三振</div></div>
+      </div>
+      <div class="player-note">6/7エンゼルス戦で8回93球・被安打2・無四死球・1失点の好投で6勝目。奪三振数はNLリーグ7位。</div>
+    </div>
+    <div class="player-card">
+      <div class="player-header">
+        <div class="player-info"><div class="player-name">佐々木 朗希</div><div class="player-team">ロサンゼルス・ドジャース ／ 先発投手</div></div>
+        <div class="player-last">6/6 7回10K 無失点</div>
+      </div>
+      <div class="stats-row pit">
+        <div class="stat-box"><div class="v hi">7</div><div class="l">投球回</div></div>
+        <div class="stat-box"><div class="v">2</div><div class="l">被安打</div></div>
+        <div class="stat-box"><div class="v">0</div><div class="l">失点</div></div>
+        <div class="stat-box"><div class="v hi">10</div><div class="l">奪三振</div></div>
+      </div>
+      <div class="player-note">6/6エンゼルス戦で7回2安打・無失点・10奪三振の快投。163km/hの速球と鋭いフォークで打者を圧倒した。</div>
+    </div>
+    <div class="yt-card">
+      <div class="yt-meta"><div class="yt-label">▶ 関連動画 / MLB ハイライト（約2分）</div><div class="yt-title">大谷翔平 12号＆13号ホームラン！！パイレーツ戦（6月9日）</div></div>
+      <div class="yt-wrap"><iframe src="https://www.youtube.com/embed/HrWt-9yN7-E?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+    </div>
+
+    <!-- 東京高校野球 -->
+    <div class="sports-title">🏟 高校野球　東京地方大会2026</div>
+    <div class="koshien-card">
+      <div class="koshien-top"><h3>🗼 東京都大会スケジュール</h3><p>第108回全国高校野球選手権　東東京・西東京大会</p></div>
+      <div class="koshien-body">
+        <ul class="timeline">
+          <li><div class="tl-date">6月14日</div><div class="tl-text"><strong>組み合わせ抽選会</strong><br>東東京・西東京それぞれ抽選。出場校と対戦相手が決定。</div></li>
+          <li><div class="tl-date">7月4日〜</div><div class="tl-text"><strong>西東京大会　開幕</strong><br>早稲田実業・日大三・東海大菅生・国学院久我山などが激突。決勝は7月26日。</div></li>
+          <li><div class="tl-date">7月5日〜</div><div class="tl-text"><strong>東東京大会　開幕</strong><br>帝京・関東一・二松学舎大附・修徳などが出場予定。決勝は7月27日。</div></li>
+          <li><div class="tl-date">8月5日〜</div><div class="tl-text"><strong>第108回甲子園　本大会</strong><br>阪神甲子園球場にて開幕。8月22日決勝。</div></li>
+        </ul>
+        <div class="countdown-row">
+          <div class="countdown-box"><div class="days">4</div><div class="label">抽選まで</div></div>
+          <div class="countdown-box"><div class="days">24</div><div class="label">西東京開幕</div></div>
+          <div class="countdown-box"><div class="days">56</div><div class="label">甲子園まで</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="footer">📰 毎朝6時更新 ・ Powered by Claude<br>各タイトルをタップで元記事へ</div>
 </body>
 </html>
