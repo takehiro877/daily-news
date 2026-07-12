@@ -73,6 +73,22 @@
   .countdown-box{flex:1;background:#fff7f0;border-radius:10px;padding:10px 6px;text-align:center}
   .countdown-box .days{font-size:24px;font-weight:900;color:#e74c3c}
   .countdown-box .label{font-size:10px;color:#999;margin-top:2px}
+
+  .koshien-section-label{font-size:11px;font-weight:700;color:#e67e22;margin:10px 0 6px;letter-spacing:.3px}
+  .seed-grid{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+  .seed-tag{font-size:11px;font-weight:700;background:#fff7f0;border:1px solid #e67e22;color:#e67e22;padding:3px 9px;border-radius:10px}
+  .seed-tag.top{background:#e67e22;color:white}
+  .hs-game{display:flex;align-items:center;padding:6px 0;border-bottom:1px solid #f0f2f5;gap:4px}
+  .hs-game:last-child{border-bottom:none}
+  .hs-round{font-size:10px;font-weight:700;color:#aaa;min-width:38px;flex-shrink:0}
+  .hs-winner{font-size:12px;font-weight:700;color:#e74c3c;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hs-score{font-size:13px;font-weight:900;color:#1a1a2e;margin:0 5px;white-space:nowrap;flex-shrink:0}
+  .hs-loser{font-size:12px;color:#999;flex:1;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hs-detail{font-size:10px;color:#bbb;min-width:28px;text-align:right;flex-shrink:0}
+  .hs-upcoming{display:flex;align-items:center;padding:6px 0;border-bottom:1px solid #f0f2f5;gap:4px}
+  .hs-upcoming:last-child{border-bottom:none}
+  .hs-date{font-size:10px;font-weight:700;color:#2980b9;min-width:44px;flex-shrink:0}
+  .hs-match{font-size:12px;color:#333;flex:1}
   .footer{text-align:center;padding:24px 16px;font-size:12px;color:#aaa}
 </style>
 </head>
@@ -222,17 +238,38 @@
   <div class="player-note">6月5日の登板では自己最長7回無失点・10奪三振の圧巻の投球を披露。大谷・山本・佐々木の日本人3人がドジャース先発陣を支え、チームは激しい首位争いを展開中。</div>
 </div>
     <div class="yt-card"><div class="yt-meta"><div class="yt-label">▶ MLB ハイライト（約2分）</div><div class="yt-title">【大谷翔平】3年前の記録を超える快挙！5試合連続HR＆第23号満塁弾炸裂！9回14奪三振9勝目！ダイヤモンドバックス戦【MLB/7月11日】</div></div><div class="yt-wrap"><iframe src="https://www.youtube.com/embed/Cv59XKErhYk?rel=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div></div>
-    <div class="sports-title">🏟 高校野球　東京地方大会2026</div>
+    <div class="sports-title">🏟 高校野球　東東京大会2026 最新結果</div>
     <div class="koshien-card">
-      <div class="koshien-top"><h3>🗼 東京都大会スケジュール</h3><p>第108回全国高校野球選手権　東東京・西東京大会</p></div>
+      <div class="koshien-top">
+        <h3>🗼 第108回全国高校野球選手権 東東京大会</h3>
+        <p>7月4日（土）〜27日（月）決勝　138校126チーム参加</p>
+      </div>
       <div class="koshien-body">
-        <ul class="timeline">
-          <li><div class="tl-date">7月4日〜</div><div class="tl-text"><strong>西東京大会　開幕・大会進行中</strong><br>早実・日大三・東海大菅生などが有力候補。決勝は7月18日予定。</div></li>
-          <li><div class="tl-date">7月5日〜</div><div class="tl-text"><strong>東東京大会　開幕・大会進行中</strong><br>帝京・関東一・二松学舎大附などが出場。決勝は7月19日予定。</div></li>
-          <li><div class="tl-date">8月5日〜</div><div class="tl-text"><strong>第108回甲子園　本大会</strong><br>阪神甲子園球場にて開幕。決勝は8月22日の予定。</div></li>
-        </ul>
+        <div class="koshien-section-label">▼ シード8校（3回戦から登場）</div>
+        <div class="seed-grid">
+          <span class="seed-tag top">⭐ 関東一</span>
+          <span class="seed-tag top">⭐ 帝京</span>
+          <span class="seed-tag">東亜学園</span>
+          <span class="seed-tag">岩倉</span>
+          <span class="seed-tag">安田学園</span>
+          <span class="seed-tag">淑徳</span>
+          <span class="seed-tag">明大中野</span>
+          <span class="seed-tag">共栄学園</span>
+        </div>
+        <div class="koshien-section-label">▼ 主な試合結果（〜7月11日）</div>
+        <div class="hs-game"><span class="hs-round">2回戦</span><span class="hs-winner">二松学舎大付</span><span class="hs-score">20-0</span><span class="hs-loser">葛西南</span><span class="hs-detail">5回</span></div>
+        <div class="hs-game"><span class="hs-round">1回戦</span><span class="hs-winner">城東</span><span class="hs-score">37-0</span><span class="hs-loser">青井・足立東ら連合</span><span class="hs-detail">5回</span></div>
+        <div class="hs-game"><span class="hs-round">2回戦</span><span class="hs-winner">堀越</span><span class="hs-score">9-0</span><span class="hs-loser">新宿</span><span class="hs-detail">7回</span></div>
+        <div class="hs-game"><span class="hs-round">2回戦</span><span class="hs-winner">日大豊山</span><span class="hs-score">5-0</span><span class="hs-loser">目黒</span><span class="hs-detail">完封</span></div>
+        <div class="hs-game"><span class="hs-round">2回戦</span><span class="hs-winner">修徳</span><span class="hs-score">2-1</span><span class="hs-loser">城西</span><span class="hs-detail">接戦</span></div>
+        <div class="hs-game"><span class="hs-round">2回戦</span><span class="hs-winner">立教池袋</span><span class="hs-score">8-7</span><span class="hs-loser">文京</span><span class="hs-detail">接戦</span></div>
+        <div class="hs-game"><span class="hs-round">2回戦</span><span class="hs-winner">芝浦工大付</span><span class="hs-score">14-6</span><span class="hs-loser">品川翔英</span><span class="hs-detail"></span></div>
+        <div class="koshien-section-label">▼ 今後の注目試合</div>
+        <div class="hs-upcoming"><span class="hs-date">7月13日</span><span class="hs-match">⭐ <strong>関東一</strong> 登場（3回戦）シード第1・昨夏優勝校</span></div>
+        <div class="hs-upcoming"><span class="hs-date">7月15日</span><span class="hs-match">⭐ <strong>帝京</strong> 登場（3回戦）シード第2・優勝候補</span></div>
+        <div class="hs-upcoming"><span class="hs-date">7月27日</span><span class="hs-match">🏆 <strong>東東京大会 決勝</strong>　代表校が決定</span></div>
         <div class="countdown-row">
-          <div class="countdown-box"><div class="days">7</div><div class="label">大会開幕中</div></div>
+          <div class="countdown-box"><div class="days">16</div><div class="label">東東京決勝まで</div></div>
           <div class="countdown-box"><div class="days">25</div><div class="label">甲子園まで</div></div>
         </div>
       </div>
